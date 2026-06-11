@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join BodyLife Fitness Hub at Andheri East Mumbai. Premium gym with expert trainers, modern equipment, Zumba & dance classes. Memberships starting ₹1499/month.">
+    <meta name="keywords" content="gym Mumbai, fitness center Andheri East, personal training, weight training, cardio, zumba classes, dance classes">
+    <meta name="author" content="BodyLife Fitness Hub">
+    <meta name="theme-color" content="#CC0000">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bodylifefitnesshub.com">
+    <meta property="og:title" content="BodyLife Fitness Hub | Best Gym in Andheri East Mumbai">
+    <meta property="og:description" content="Join BodyLife Fitness Hub at Andheri East Mumbai. Premium gym with expert trainers, modern equipment, Zumba & dance classes. Memberships starting ₹1499/month.">
+    <meta property="og:image" content="https://bodylifefitnesshub.com/images/hero.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bodylifefitnesshub.com">
+    <meta property="twitter:title" content="BodyLife Fitness Hub | Best Gym in Andheri East Mumbai">
+    <meta property="twitter:description" content="Join BodyLife Fitness Hub at Andheri East Mumbai. Premium gym with expert trainers, modern equipment, Zumba & dance classes. Memberships starting ₹1499/month.">
+    <meta property="twitter:image" content="https://bodylifefitnesshub.com/images/hero.jpg">
+    
+    <title>BodyLife Fitness Hub | Best Gym in Andheri East Mumbai</title>
+    
+    <!-- Google Fonts preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS - Animate On Scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div id="progressBar"></div>
+
+    <!-- Navigation / Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <a href="#hero" class="navbar-logo">
+                <img src="images/logo.png" alt="BodyLife Fitness Hub Logo" class="navbar-logo-img" loading="lazy" decoding="async">
+                <span class="navbar-brand">BODYLIFE</span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="nav-item"><a href="#hero" class="nav-link" data-section="hero">HOME</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link" data-section="about">ABOUT</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link" data-section="services">SERVICES</a></li>
+                <li class="nav-item"><a href="#pricing" class="nav-link" data-section="pricing">PRICING</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link" data-section="gallery">GALLERY</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link" data-section="contact">CONTACT</a></li>
+            </ul>
+
+            <!-- Join Now Button (Desktop) -->
+            <button class="navbar-btn navbar-cta" id="joinNowDesktop" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">
+                JOIN NOW
+            </button>
+
+            <!-- Hamburger Menu Toggle -->
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Mobile Menu Backdrop -->
+            <div class="navbar-backdrop" id="navbarBackdrop"></div>
+
+            <!-- Mobile Menu -->
+            <div class="navbar-mobile-menu" id="navbarMobileMenu">
+                <ul class="navbar-mobile-list">
+                    <li><a href="#hero" class="navbar-mobile-link" data-section="hero">HOME</a></li>
+                    <li><a href="#about" class="navbar-mobile-link" data-section="about">ABOUT</a></li>
+                    <li><a href="#services" class="navbar-mobile-link" data-section="services">SERVICES</a></li>
+                    <li><a href="#pricing" class="navbar-mobile-link" data-section="pricing">PRICING</a></li>
+                    <li><a href="#gallery" class="navbar-mobile-link" data-section="gallery">GALLERY</a></li>
+                    <li><a href="#contact" class="navbar-mobile-link" data-section="contact">CONTACT</a></li>
+                </ul>
+                <!-- Join Now Button (Mobile) -->
+                <button class="navbar-btn navbar-cta navbar-mobile-cta" id="joinNowMobile" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">
+                    JOIN NOW
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <!-- Background overlay with parallax -->
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+
+        <!-- Hero content container -->
+        <div class="hero-content">
+            <!-- Badge label -->
+            <div class="hero-badge">
+                <span class="badge-icon">⚡</span>
+                <span class="badge-text">SINCE 2001 • ANDHERI EAST, MUMBAI</span>
+            </div>
+
+            <!-- Main heading -->
+            <h1 class="hero-title">
+                <span class="hero-title-line hero-title-line-1">BETTER BODY.</span>
+                <span class="hero-title-line hero-title-line-2">BETTER <span class="hero-accent">LIFE.</span></span>
+            </h1>
+
+            <!-- Subheading -->
+            <p class="hero-subheading">Start Your Transformation Today</p>
+
+            <!-- CTA buttons -->
+            <div class="hero-buttons">
+                <button class="hero-btn hero-btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">
+                    JOIN NOW
+                    <span class="btn-arrow">→</span>
+                </button>
+                <button class="hero-btn hero-btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
+                    VIEW PLANS
+                </button>
+            </div>
+
+            <!-- Stats bar -->
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="stat-number" data-target="500">0</span>
+                    <span class="stat-label">Members</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="stat-number" data-target="20">0</span>
+                    <span class="stat-label">Years</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="stat-label-only">Expert Trainers</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="stat-label-only">Results Guaranteed</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="hero-scroll-indicator">
+            <div class="scroll-arrow"></div>
+            <p>Scroll to explore</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section section-about">
+        <div class="container about-container">
+            <div class="about-image-wrap" data-aos="fade-right">
+                <div class="about-image-border"></div>
+                <img src="images/about.jpg" alt="About BodyLife Fitness Hub" class="about-image" loading="lazy" decoding="async">
+                <div class="about-image-overlay"></div>
+            </div>
+            <div class="about-copy" data-aos="fade-left">
+                <p class="section-label">— ABOUT US</p>
+                <h2 class="section-heading">We Have Lot Of Experience In Gym Training</h2>
+                <p class="section-paragraph">BodyLife Fitness Hub has been Mumbai's trusted fitness destination since 2001. We combine modern equipment, expert guidance, and a motivating environment to help you achieve real, lasting results.</p>
+                <div class="about-features">
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                        <span class="feature-icon">✓</span>
+                        <p>Over 20 years of proven fitness experience</p>
+                    </div>
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                        <span class="feature-icon">✓</span>
+                        <p>Certified trainers with personalized approach</p>
+                    </div>
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                        <span class="feature-icon">✓</span>
+                        <p>Modern Warasa equipment &amp; hygienic facilities</p>
+                    </div>
+                </div>
+                <button class="btn btn-primary about-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                    Get Started
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Why Choose Us</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="50">
+                    <div class="feature-icon">💪</div>
+                    <h3>Modern Equipment</h3>
+                    <p>Latest Warasa fitness equipment for safe and effective training</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">👨‍🏫</div>
+                    <h3>Expert Trainers</h3>
+                    <p>Certified professionals dedicated to your success and safety</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="feature-icon">📋</div>
+                    <h3>Personalized Plans</h3>
+                    <p>Customized workout regimens tailored to your goals</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">✨</div>
+                    <h3>Clean Environment</h3>
+                    <p>Hygienic facilities maintained to the highest standards</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="feature-icon">🚿</div>
+                    <h3>Shower & Lockers</h3>
+                    <p>Convenient facilities for your comfort and convenience</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Results Guaranteed</h3>
+                    <p>Proven track record of delivering transformations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Highlight Strip -->
+    <section id="features-strip" class="section section-features-strip">
+        <div class="container features-strip-container">
+            <div class="feature-strip-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-strip-icon" aria-hidden="true">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 11H18V8H16V11H8V8H6V11H4V13H6V16H8V13H16V16H18V13H20V11Z" fill="#CC0000"/>
+                        <path d="M2 11H4V13H2V11Z" fill="#CC0000"/>
+                    </svg>
+                </div>
+                <h3>Modern Equipment</h3>
+                <p>Latest Warasa fitness machines &amp; advanced tools</p>
+            </div>
+            <div class="feature-strip-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-strip-icon" aria-hidden="true">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" fill="#CC0000"/>
+                        <path d="M4 20C4 16.6863 6.68629 14 10 14H14C17.3137 14 20 16.6863 20 20V22H4V20Z" fill="#CC0000"/>
+                    </svg>
+                </div>
+                <h3>Expert Trainers</h3>
+                <p>Certified &amp; experienced coaches for every goal</p>
+            </div>
+            <div class="feature-strip-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-strip-icon" aria-hidden="true">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 3H17V5H7V3Z" fill="#CC0000"/>
+                        <path d="M5 7H19V19H5V7Z" stroke="#CC0000" stroke-width="2"/>
+                        <path d="M9 11H15" stroke="#CC0000" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M9 15H13" stroke="#CC0000" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3>Personal Plans</h3>
+                <p>Custom workout plans designed for your body</p>
+            </div>
+            <div class="feature-strip-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="feature-strip-icon" aria-hidden="true">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3L4 6V11C4 16.55 7.85 21.74 12 23C16.15 21.74 20 16.55 20 11V6L12 3Z" fill="#CC0000"/>
+                        <path d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z" fill="#0a0a0a"/>
+                    </svg>
+                </div>
+                <h3>Clean &amp; Hygienic</h3>
+                <p>Sanitized daily with shower &amp; locker facility</p>
+            </div>
+            <div class="feature-strip-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="feature-strip-icon" aria-hidden="true">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" fill="#CC0000"/>
+                    </svg>
+                </div>
+                <h3>Results Guaranteed</h3>
+                <p>Join today and transform tomorrow</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section section-services">
+        <div class="container">
+            <p class="section-label">— OUR SERVICES</p>
+            <h2 class="section-title" data-aos="fade-up">Our Gym Classes</h2>
+            <div class="services-grid">
+                <article class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 11H18V8H16V11H8V8H6V11H4V13H6V16H8V13H16V16H18V13H20V11Z" fill="currentColor"/>
+                            <path d="M2 11H4V13H2V11Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>Weight Training</h3>
+                    <p>Build raw strength with free weights &amp; machines</p>
+                    <a class="service-link" href="#contact">Learn More →</a>
+                </article>
+                <article class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" fill="currentColor"/>
+                            <path d="M4 20C4 16.6863 6.68629 14 10 14H14C17.3137 14 20 16.6863 20 20V22H4V20Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>Expert Trainers</h3>
+                    <p>Certified &amp; experienced coaches for every goal</p>
+                    <a class="service-link" href="#contact">Learn More →</a>
+                </article>
+                <article class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 3H16V5H8V3Z" fill="currentColor"/>
+                            <path d="M6 7H18V19H6V7Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M9 11H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M9 15H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Zumba Classes</h3>
+                    <p>Fun high-energy dance workout for all levels</p>
+                    <a class="service-link" href="#contact">Learn More →</a>
+                </article>
+                <article class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L4 6V11C4 16.55 7.85 21.74 12 23C16.15 21.74 20 16.55 20 11V6L12 2Z" fill="currentColor"/>
+                            <path d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z" fill="#0a0a0a"/>
+                        </svg>
+                    </div>
+                    <h3>Bollywood Dance</h3>
+                    <p>Burn calories to your favourite Bollywood beats</p>
+                    <a class="service-link" href="#contact">Learn More →</a>
+                </article>
+                <article class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 4H17V7H7V4Z" fill="currentColor"/>
+                            <path d="M8 9H16V19H8V9Z" fill="currentColor"/>
+                            <path d="M10 9V7" stroke="#0a0a0a" stroke-width="2"/>
+                            <path d="M14 9V7" stroke="#0a0a0a" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Personal Training</h3>
+                    <p>One-on-one sessions with certified trainers</p>
+                    <a class="service-link" href="#contact">Learn More →</a>
+                </article>
+                <article class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 20V11C6 9.34315 7.34315 8 9 8H10C11.6569 8 13 9.34315 13 11V20" stroke="currentColor" stroke-width="2"/>
+                            <path d="M18 20V11C18 9.34315 16.6569 8 15 8H14C12.3431 8 11 9.34315 11 11V20" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 6C8 4.89543 8.89543 4 10 4H11C12.1046 4 13 4.89543 13 6V8" stroke="currentColor" stroke-width="2"/>
+                            <path d="M14 6C14 4.89543 14.8954 4 16 4H17C18.1046 4 19 4.89543 19 6V8" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Couple Training</h3>
+                    <p>Train together with special couple programs</p>
+                    <a class="service-link" href="#contact">Learn More →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section section-pricing">
+        <div class="container">
+            <p class="section-label">— MEMBERSHIP PLANS</p>
+            <h2 class="section-title" data-aos="fade-up">Find Your Perfect Plan</h2>
+            <p class="pricing-subtext" data-aos="fade-up" data-aos-delay="100">No registration fee this month. Join today!</p>
+            <div class="pricing-grid">
+                <article class="pricing-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="pricing-top"></div>
+                    <span class="pricing-plan">STARTER</span>
+                    <p class="pricing-duration">1 Month</p>
+                    <p class="pricing-price">₹1,499</p>
+                    <ul class="pricing-features">
+                        <li>✓ Basic gym access</li>
+                        <li>✓ All equipment</li>
+                        <li>✓ Locker facility</li>
+                    </ul>
+                    <button class="btn btn-primary">Join Now</button>
+                </article>
+                <article class="pricing-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-top"></div>
+                    <span class="pricing-plan">PROGRESS</span>
+                    <p class="pricing-duration">3 Months</p>
+                    <p class="pricing-price">₹3,999</p>
+                    <ul class="pricing-features">
+                        <li>✓ Basic gym access</li>
+                        <li>✓ All equipment</li>
+                        <li>✓ Locker facility</li>
+                        <li>✓ Personal assessment</li>
+                    </ul>
+                    <button class="btn btn-primary">Join Now</button>
+                </article>
+                <article class="pricing-card pricing-card-featured" data-aos="fade-up" data-aos-delay="250">
+                    <div class="pricing-top"></div>
+                    <span class="pricing-badge pricing-badge-popular">MOST POPULAR</span>
+                    <span class="pricing-plan">TRANSFORM</span>
+                    <p class="pricing-duration">6 Months</p>
+                    <p class="pricing-price">₹5,999</p>
+                    <ul class="pricing-features">
+                        <li>✓ Basic gym access</li>
+                        <li>✓ All equipment</li>
+                        <li>✓ Locker facility</li>
+                        <li>✓ Personal assessment</li>
+                        <li>✓ Zumba &amp; Dance classes</li>
+                    </ul>
+                    <button class="btn btn-primary">Join Now</button>
+                </article>
+                <article class="pricing-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-top"></div>
+                    <span class="pricing-badge pricing-badge-free">1 MONTH FREE</span>
+                    <span class="pricing-plan">ELITE</span>
+                    <p class="pricing-duration">12 Months</p>
+                    <p class="pricing-price">₹7,999</p>
+                    <ul class="pricing-features">
+                        <li>✓ Basic gym access</li>
+                        <li>✓ All equipment</li>
+                        <li>✓ Locker facility</li>
+                        <li>✓ Personal assessment</li>
+                        <li>✓ Zumba &amp; Dance classes</li>
+                        <li>✓ Priority trainer access</li>
+                        <li>✓ Transformation challenge entry</li>
+                    </ul>
+                    <button class="btn btn-primary">Join Now</button>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers Section -->
+    <section id="offers" class="section section-offers">
+        <div class="container">
+            <p class="section-label">— LIMITED TIME</p>
+            <h2 class="section-title" data-aos="zoom-in">Special Offers</h2>
+            <div class="offers-grid">
+                <article class="offer-card offer-card-red" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="offer-icon">👥</div>
+                    <h3>BRING A FRIEND</h3>
+                    <p class="offer-highlight">GET ₹500 OFF</p>
+                    <p>Refer a friend and both of you save!</p>
+                </article>
+                <article class="offer-card offer-card-green" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="offer-icon">📋</div>
+                    <h3>NO REGISTRATION FEE</h3>
+                    <p class="offer-highlight">THIS MONTH ONLY</p>
+                    <p>Join now and skip the registration fee completely</p>
+                </article>
+                <article class="offer-card offer-card-purple" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="offer-icon">🏆</div>
+                    <h3>TRANSFORMATION CHALLENGE</h3>
+                    <p class="offer-highlight">WIN EXCITING REWARDS</p>
+                    <p>Join our challenge and win fitness gear & prizes</p>
+                </article>
+            </div>
+            <div class="offer-pills" data-aos="zoom-in" data-aos-delay="400">
+                <span class="offer-pill">💑 Couple Membership Special Offer — Ask Us!</span>
+                <span class="offer-pill">🕺 FREE Zumba + Bollywood Dance Classes Included</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section bg-dark">
+        <div class="container">
+            <p class="section-label">— OUR GYM</p>
+            <h2 class="section-title" data-aos="fade-up">Take A Look Inside</h2>
+            <div class="gallery-grid">
+                <button type="button" class="gallery-item" data-full="images/gallery1.jpg" data-caption="Premium strength deck" data-aos="zoom-in" data-aos-delay="50">
+                    <img src="images/gallery1.jpg" alt="Premium strength deck" loading="lazy" decoding="async">
+                    <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
+                </button>
+                <button type="button" class="gallery-item" data-full="images/gallery2.jpg" data-caption="Modern cardio zone" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="images/gallery2.jpg" alt="Modern cardio zone" loading="lazy" decoding="async">
+                    <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
+                </button>
+                <button type="button" class="gallery-item" data-full="images/gallery3.jpg" data-caption="Motivational wall murals" data-aos="zoom-in" data-aos-delay="150">
+                    <img src="images/gallery3.jpg" alt="Motivational wall murals" loading="lazy" decoding="async">
+                    <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
+                </button>
+                <button type="button" class="gallery-item" data-full="images/gallery4.jpg" data-caption="Community training space" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="images/gallery4.jpg" alt="Community training space" loading="lazy" decoding="async">
+                    <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
+                </button>
+                <button type="button" class="gallery-item" data-full="images/gallery5.jpg" data-caption="High-performance strength equipment" data-aos="zoom-in" data-aos-delay="250">
+                    <img src="images/gallery5.jpg" alt="High-performance strength equipment" loading="lazy" decoding="async">
+                    <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
+                </button>
+                <button type="button" class="gallery-item" data-full="images/gallery6.jpg" data-caption="Premium lifting corner" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="images/gallery6.jpg" alt="Premium lifting corner" loading="lazy" decoding="async">
+                    <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
+                </button>
+            </div>
+        </div>
+
+        <div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
+            <div role="dialog" aria-modal="true" class="lightbox-panel" tabindex="-1">
+                <button type="button" class="lightbox-close" aria-label="Close gallery">✕</button>
+                <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous image">‹</button>
+                <div class="lightbox-content">
+                    <img src="" alt="Expanded gallery image" id="lightboxImage" loading="lazy" decoding="async">
+                    <p class="lightbox-caption" id="lightboxCaption"></p>
+                </div>
+                <button type="button" class="lightbox-nav lightbox-next" aria-label="Next image">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BMI Calculator Section -->
+    <section id="bmi" class="section">
+        <div class="container">
+            <p class="section-label">— HEALTH TOOL</p>
+            <h2 class="section-title" data-aos="fade-up">Calculate Your BMI Now</h2>
+            <div class="bmi-card" data-aos="zoom-in" data-aos-delay="100">
+                <form id="bmiForm" class="bmi-form">
+                    <div class="bmi-grid">
+                        <div class="bmi-input">
+                            <label for="weight">Weight</label>
+                            <input type="number" id="weight" name="weight" placeholder="Weight (kg)" min="1" step="0.1" required>
+                        </div>
+                        <div class="bmi-input">
+                            <label for="height">Height</label>
+                            <input type="number" id="height" name="height" placeholder="Height (cm)" min="1" step="0.1" required>
+                        </div>
+                        <div class="bmi-input">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" placeholder="Age" min="1" required>
+                        </div>
+                        <div class="bmi-input">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary bmi-submit">CALCULATE MY BMI →</button>
+                    <p id="bmiError" class="bmi-error" aria-live="polite"></p>
+                </form>
+
+                <div id="bmiResult" class="bmi-result" aria-live="polite">
+                    <div class="bmi-result-inner">
+                        <div class="bmi-score" id="bmiScore">0.0</div>
+                        <div class="bmi-category" id="bmiCategory"></div>
+                        <div class="bmi-progress">
+                            <div class="bmi-progress-fill" id="bmiProgressFill"></div>
+                        </div>
+                        <div class="bmi-progress-scale">
+                            <span>0</span>
+                            <span>40+</span>
+                        </div>
+                        <p class="bmi-message" id="bmiMessage"></p>
+                        <a href="#contact" class="btn btn-secondary bmi-join-btn" id="bmiJoinBtn">Join Us Today</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timings Section -->
+    <section id="timings" class="section">
+        <div class="container timings-layout" data-aos="fade-up" data-aos-delay="100">
+            <div class="timings-left">
+                <p class="section-label">— GYM HOURS</p>
+                <h2 class="section-title">We're Open</h2>
+                <div class="timing-cards">
+                    <article class="timing-card" data-days="1,2,3,4,5,6" data-start="360" data-end="1380">
+                        <div class="timing-card-header">
+                            <h3>Monday — Saturday</h3>
+                            <span class="status-badge" aria-live="polite"></span>
+                        </div>
+                        <p class="timing">6:00 AM – 11:00 PM</p>
+                    </article>
+                    <article class="timing-card" data-days="0" data-start="600" data-end="840">
+                        <div class="timing-card-header">
+                            <h3>Sunday</h3>
+                            <span class="status-badge" aria-live="polite"></span>
+                        </div>
+                        <p class="timing">10:00 AM – 2:00 PM</p>
+                    </article>
+                </div>
+            </div>
+            <div class="timings-right">
+                <div class="timing-cta-card">
+                    <h3>Ready To Start?</h3>
+                    <p>Call or WhatsApp us to enquire about membership and start your journey today.</p>
+                    <div class="timing-actions">
+                        <a href="tel:9821777160" class="btn btn-primary timing-btn">
+                            📞 9821777160
+                        </a>
+                        <a href="https://wa.me/919821777160" target="_blank" rel="noreferrer" class="btn btn-whatsapp timing-btn">
+                            WhatsApp Us
+                        </a>
+                    </div>
+                    <p class="timing-social">Follow us on Instagram: <a href="https://instagram.com/body.lifefitnesshub" target="_blank" rel="noreferrer">@body.lifefitnesshub</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Member Success Stories</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="50">
+                    <p class="testimonial-text">"BodyLife transformed my fitness journey. The trainers are incredibly knowledgeable and supportive!"</p>
+                    <p class="testimonial-author">- Raj Kumar</p>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <p class="testimonial-text">"Best gym in Andheri East. Clean facilities, modern equipment, and amazing classes!"</p>
+                    <p class="testimonial-author">- Priya Sharma</p>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="150">
+                    <p class="testimonial-text">"Lost 15 kg in 6 months with their personalized training program. Highly recommend!"</p>
+                    <p class="testimonial-author">- Arjun Verma</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container contact-layout" data-aos="fade-up" data-aos-delay="100">
+            <div class="contact-left">
+                <p class="section-label">— GET IN TOUCH</p>
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-form-card" data-aos="fade-up" data-aos-delay="150">
+                    <form id="contactForm" class="contact-form" action="https://formsubmit.co/YOUR_EMAIL" method="POST" novalidate>
+                        <input type="hidden" name="_subject" value="New BodyLife enquiry">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="text" name="_honey" style="display:none;" autocomplete="off">
+                        <div class="form-row">
+                            <label>
+                                Full Name
+                                <input type="text" name="name" placeholder="Full Name" required>
+                            </label>
+                            <label>
+                                Phone Number
+                                <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9+\- ]{7,20}" required>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>
+                                Email
+                                <input type="email" name="email" placeholder="Email" required>
+                            </label>
+                            <label>
+                                Membership Interest
+                                <select name="interest" required>
+                                    <option value="" disabled selected>Select Interest</option>
+                                    <option value="1 Month">1 Month</option>
+                                    <option value="3 Months">3 Months</option>
+                                    <option value="6 Months">6 Months</option>
+                                    <option value="12 Months">12 Months</option>
+                                    <option value="Just Enquiring">Just Enquiring</option>
+                                </select>
+                            </label>
+                        </div>
+                        <label>
+                            Message
+                            <textarea name="message" rows="4" placeholder="Write your message" required></textarea>
+                        </label>
+                        <button type="submit" class="btn btn-primary contact-submit">SEND ENQUIRY →</button>
+                        <p id="contactError" class="contact-feedback contact-error" aria-live="polite"></p>
+                        <p id="contactSuccess" class="contact-feedback contact-success" aria-live="polite">We'll contact you within 24 hours!</p>
+                    </form>
+                </div>
+            </div>
+            <div class="contact-right" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-info-panel">
+                    <div class="contact-info-card">
+                        <h3>📍 Address</h3>
+                        <p>Sahar Road, Chakala, Andheri East, Mumbai 400099</p>
+                    </div>
+                    <div class="contact-info-card">
+                        <h3>📞 Phone</h3>
+                        <p><a href="tel:9821777160">9821777160</a></p>
+                    </div>
+                    <div class="contact-info-card">
+                        <h3>📱 WhatsApp</h3>
+                        <p><a href="https://wa.me/919821777160" target="_blank" rel="noreferrer">919821777160</a></p>
+                    </div>
+                    <div class="contact-info-card">
+                        <h3>📸 Instagram</h3>
+                        <p><a href="https://instagram.com/body.lifefitnesshub" target="_blank" rel="noreferrer">@body.lifefitnesshub</a></p>
+                    </div>
+                    <div class="contact-info-card">
+                        <h3>🕐 Opening Hours</h3>
+                        <p>Mon-Sat: 6AM–11PM<br>Sun: 10AM–2PM</p>
+                    </div>
+                </div>
+                <div class="contact-map-card">
+                    <iframe class="contact-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30265.62590451999!2d72.86267695575081!3d19.108664932565485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c83c4b079603%3A0xddaa8ef1e40fbf36!2sChakala%2C%20Andheri%20East%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <div class="footer-section footer-brand">
+                        <img src="images/logo.png" alt="BodyLife Fitness Hub logo" class="footer-logo" loading="lazy" decoding="async">
+                        <p class="footer-tagline">Better Body. Better Life.</p>
+                        <p class="footer-description">Mumbai's premier fitness hub since 2001. Transform your body, transform your life.</p>
+                        <div class="footer-social-icons">
+                            <a href="https://instagram.com/body.lifefitnesshub" target="_blank" rel="noreferrer" aria-label="Instagram">📷</a>
+                            <a href="https://wa.me/919821777160" target="_blank" rel="noreferrer" aria-label="WhatsApp">💬</a>
+                        </div>
+                    </div>
+                    <div class="footer-section footer-links">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#hero">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section footer-services">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#services">Weight Training</a></li>
+                            <li><a href="#services">Cardio Zone</a></li>
+                            <li><a href="#services">Zumba Classes</a></li>
+                            <li><a href="#services">Bollywood Dance</a></li>
+                            <li><a href="#services">Personal Training</a></li>
+                            <li><a href="#services">Couple Training</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section footer-contact-info">
+                        <h3>Contact</h3>
+                        <p>📍 Sahar Road, Chakala, Andheri East, Mumbai 400099</p>
+                        <p>📞 <a href="tel:9821777160">9821777160</a></p>
+                        <p>🕐 Mon-Sat: 6AM–11PM</p>
+                        <p>🕐 Sun: 10AM–2PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-bottom-left">© 2025 BodyLife Fitness Hub. All Rights Reserved.</p>
+                <p class="footer-bottom-right">Designed with ❤️ for fitness</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/919821777160" class="whatsapp-btn" aria-label="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-1.555.836-2.859 2.012-3.744 3.369C2.954 10.487 2.5 12.159 2.5 13.905c0 1.192.195 2.354.563 3.457L2.71 22.3l3.541-1.153c1.052.577 2.212.89 3.442.89 1.745 0 3.417-.454 4.866-1.315 1.555-.836 2.859-2.012 3.744-3.369.885-1.357 1.338-2.896 1.338-4.651 0-1.746-.454-3.418-1.315-4.867-.836-1.555-2.012-2.859-3.369-3.744-1.357-.885-2.896-1.338-4.651-1.338z"/>
+        </svg>
+    </a>
+
+    <!-- AOS JS CDN -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

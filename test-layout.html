@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Test - BodyLife Fitness Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+        }
+
+        .viewport-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(204, 0, 0, 0.9);
+            padding: 15px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 9999;
+            min-width: 200px;
+        }
+
+        .test-section {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid #CC0000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .test-section h2 {
+            font-size: 2rem;
+            text-align: center;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .grid-line {
+            position: absolute;
+            background: #CC0000;
+        }
+
+        .grid-line.vertical {
+            width: 1px;
+            height: 100%;
+            top: 0;
+        }
+
+        .grid-line.horizontal {
+            width: 100%;
+            height: 1px;
+            left: 0;
+        }
+
+        .bg-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(204, 0, 0, 0.1) 0%, transparent 100%);
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 1000px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .center-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: #CC0000;
+            opacity: 0.5;
+            z-index: 10;
+        }
+
+        .edge-marker {
+            position: absolute;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: rgba(0, 255, 0, 0.5);
+            z-index: 10;
+        }
+
+        .left-edge {
+            left: 0;
+        }
+
+        .right-edge {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="viewport-info">
+        <div>Width: <span id="width">--</span>px</div>
+        <div>Height: <span id="height">--</span>px</div>
+        <div>Aspect: <span id="aspect">--</span></div>
+    </div>
+
+    <div class="test-section">
+        <div class="bg-gradient"></div>
+        <div class="grid-lines" id="grid"></div>
+        <div class="center-line"></div>
+        <div class="edge-marker left-edge"></div>
+        <div class="edge-marker right-edge"></div>
+        <div class="content">
+            <h2>Hero Section Test - 1280px Width</h2>
+            <p>Content should be centered with red line down the middle</p>
+            <p>Green lines mark viewport edges</p>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <div class="bg-gradient"></div>
+        <div class="grid-lines" id="grid2"></div>
+        <div class="center-line"></div>
+        <div class="edge-marker left-edge"></div>
+        <div class="edge-marker right-edge"></div>
+        <div class="content">
+            <h2>Hero Section Test - 1440px Width</h2>
+            <p>Content should remain centered</p>
+            <p>Content alignment: CENTER</p>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <div class="bg-gradient"></div>
+        <div class="grid-lines" id="grid3"></div>
+        <div class="center-line"></div>
+        <div class="edge-marker left-edge"></div>
+        <div class="edge-marker right-edge"></div>
+        <div class="content">
+            <h2>Hero Section Test - 1920px Width</h2>
+            <p>Content should be centered and NOT shifted right</p>
+            <p>Max-width: 1000px with proper padding</p>
+        </div>
+    </div>
+
+    <script>
+        function updateViewportInfo() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const aspect = (width / height).toFixed(2);
+
+            document.getElementById('width').textContent = width;
+            document.getElementById('height').textContent = height;
+            document.getElementById('aspect').textContent = aspect;
+        }
+
+        // Update on resize
+        window.addEventListener('resize', updateViewportInfo);
+        window.addEventListener('load', updateViewportInfo);
+
+        // Create grid lines
+        function createGrid(gridId) {
+            const grid = document.getElementById(gridId);
+            if (!grid) return;
+
+            // Vertical lines every 100px
+            for (let i = 0; i <= window.innerWidth; i += 100) {
+                const line = document.createElement('div');
+                line.className = 'grid-line vertical';
+                line.style.left = i + 'px';
+                grid.appendChild(line);
+            }
+
+            // Horizontal lines every 100px
+            for (let i = 0; i <= window.innerHeight; i += 100) {
+                const line = document.createElement('div');
+                line.className = 'grid-line horizontal';
+                line.style.top = i + 'px';
+                grid.appendChild(line);
+            }
+        }
+
+        createGrid('grid');
+        createGrid('grid2');
+        createGrid('grid3');
+    </script>
+</body>
+</html>

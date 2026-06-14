@@ -1,857 +1,2525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Join BodyLife Fitness Hub at Andheri East Mumbai. Premium gym with expert trainers, modern equipment, Zumba & dance classes. Memberships starting ₹1499/month.">
-    <meta name="keywords" content="gym Mumbai, fitness center Andheri East, personal training, weight training, cardio, zumba classes, dance classes">
-    <meta name="author" content="BodyLife Fitness Hub">
-    <meta name="theme-color" content="#CC0000">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bodylifefitnesshub.com">
-    <meta property="og:title" content="BodyLife Fitness Hub | Best Gym in Andheri East Mumbai">
-    <meta property="og:description" content="Join BodyLife Fitness Hub at Andheri East Mumbai. Premium gym with expert trainers, modern equipment, Zumba & dance classes. Memberships starting ₹1499/month.">
-    <meta property="og:image" content="https://bodylifefitnesshub.com/hero.jpg">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://bodylifefitnesshub.com">
-    <meta property="twitter:title" content="BodyLife Fitness Hub | Best Gym in Andheri East Mumbai">
-    <meta property="twitter:description" content="Join BodyLife Fitness Hub at Andheri East Mumbai. Premium gym with expert trainers, modern equipment, Zumba & dance classes. Memberships starting ₹1499/month.">
-    <meta property="twitter:image" content="https://bodylifefitnesshub.com/hero.jpg">
-    
-    <title>BodyLife Fitness Hub | Best Gym in Andheri East Mumbai</title>
-    
-    <!-- Google Fonts preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- AOS - Animate On Scroll -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Join BodyLife Fitness Hub at Andheri East Mumbai. Premium gym with expert trainers, modern equipment, Zumba & dance classes. Memberships starting ₹1499/month.">
+  <meta name="keywords" content="gym Mumbai, fitness center Andheri East, personal training, weight training, cardio, zumba classes, dance classes">
+  <meta name="author" content="BodyLife Fitness Hub">
+  <meta name="theme-color" content="#CC0000">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bodylifefitnesshub.com">
+  <meta property="og:title" content="BodyLife Fitness Hub | Best Gym in Andheri East Mumbai">
+  <meta property="og:description" content="Join BodyLife Fitness Hub at Andheri East Mumbai. Premium gym with expert trainers, modern equipment, Zumba & dance classes. Memberships starting ₹1499/month.">
+  <meta property="og:image" content="https://bodylifefitnesshub.com/images/hero.jpg">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="BodyLife Fitness Hub | Best Gym in Andheri East Mumbai">
+  <meta property="twitter:description" content="Join BodyLife Fitness Hub at Andheri East Mumbai. Premium gym with expert trainers, modern equipment, Zumba & dance classes. Memberships starting ₹1499/month.">
+  <meta property="twitter:image" content="https://bodylifefitnesshub.com/images/hero.jpg">
+  <title>BodyLife Fitness Hub | Best Gym in Andheri East Mumbai</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --red:       #CC0000;
+      --red-dark:  #a30000;
+      --black:     #0a0a0a;
+      --surface:   #111111;
+      --surface2:  #1a1a1a;
+      --border:    #222222;
+      --white:     #ffffff;
+      --off-white: #f0f0f0;
+      --muted:     #888888;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body:    'Inter', sans-serif;
+      --max-w: 1200px;
+      --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    input, select, textarea { font-family: inherit; }
+
+    /* ============================================================
+       SCROLL PROGRESS BAR
+    ============================================================ */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--red);
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    /* ============================================================
+       LAYOUT HELPERS
+    ============================================================ */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .section {
+      padding: 7rem 0;
+    }
+    .section--dark { background: var(--surface); }
+
+    /* ============================================================
+       TYPOGRAPHY HELPERS
+    ============================================================ */
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.25rem;
+    }
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--red);
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .section-title span { color: var(--red); }
+    .section-body {
+      font-size: 1.0625rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .btn--primary {
+      background: var(--red);
+      color: var(--white);
+    }
+    .btn--primary:hover {
+      background: var(--red-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(204,0,0,0.35);
+    }
+    .btn--outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .btn--outline:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.06);
+    }
+    .btn svg { flex-shrink: 0; }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.25rem 0;
+      transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
+    }
+    .navbar.scrolled {
+      background: rgba(10,10,10,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0.875rem 0;
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .navbar__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .navbar__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+    .navbar__logo img {
+      height: 36px;
+      width: auto;
+    }
+    .navbar__brand {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+    }
+    .navbar__nav {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .navbar__link {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      transition: color var(--transition);
+      position: relative;
+    }
+    .navbar__link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--red);
+      transition: width var(--transition);
+    }
+    .navbar__link:hover,
+    .navbar__link.active { color: var(--white); }
+    .navbar__link:hover::after,
+    .navbar__link.active::after { width: 100%; }
+    .navbar__cta { margin-left: 1rem; }
+
+    /* Hamburger */
+    .navbar__toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      padding: 2px;
+    }
+    .navbar__toggle span {
+      display: block;
+      height: 1.5px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .navbar__toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .navbar__toggle.open span:nth-child(2) { opacity: 0; }
+    .navbar__toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .navbar__mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,10,0.98);
+      backdrop-filter: blur(16px);
+      z-index: 999;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition);
+    }
+    .navbar__mobile.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .navbar__mobile-link {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.7);
+      transition: color var(--transition);
+    }
+    .navbar__mobile-link:hover { color: var(--red); }
+
+    @media (max-width: 900px) {
+      .navbar__nav, .navbar__cta { display: none; }
+      .navbar__toggle { display: flex; }
+      .navbar__mobile { display: flex; }
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 6rem;
+      overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('hero.jpg');
+      background-size: cover;
+      background-position: center top;
+      transform: scale(1.06);
+      transition: transform 8s ease-out;
+    }
+    .hero__bg.loaded { transform: scale(1); }
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,10,0.3) 0%,
+        rgba(10,10,10,0.15) 35%,
+        rgba(10,10,10,0.75) 70%,
+        rgba(10,10,10,0.97) 100%
+      );
+    }
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 2rem;
+      width: 100%;
+    }
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+      padding: 0.45rem 1rem;
+      border: 1px solid rgba(204,0,0,0.4);
+      border-radius: 2px;
+      background: rgba(204,0,0,0.08);
+    }
+    .hero__badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .hero__badge-text {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 10vw, 8rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .hero__title-accent { color: var(--red); }
+    .hero__sub {
+      font-size: 1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+    .hero__stats {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .hero__stat {
+      padding: 0 2.5rem 0 0;
+      margin-right: 2.5rem;
+      border-right: 1px solid var(--border);
+    }
+    .hero__stat:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+    .hero__stat-num {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      line-height: 1;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+    .hero__stat-num span { color: var(--red); }
+    .hero__stat-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* Scroll cue */
+    .hero__scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 2;
+    }
+    .hero__scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, var(--red));
+      animation: scrollLine 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+    .hero__scroll-text {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
+    }
+
+    /* ============================================================
+       MARQUEE STRIP
+    ============================================================ */
+    .marquee-strip {
+      background: var(--red);
+      padding: 0.85rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding-right: 4rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+    }
+    .marquee-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      flex-shrink: 0;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       ABOUT
+    ============================================================ */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .about__img-wrap {
+      position: relative;
+    }
+    .about__img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+    .about__img-border {
+      position: absolute;
+      inset: -16px;
+      border: 1px solid rgba(204,0,0,0.25);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .about__stat-badge {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      background: var(--red);
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+    .about__stat-badge-num {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--white);
+    }
+    .about__stat-badge-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-top: 0.3rem;
+    }
+    .about__checks {
+      margin: 2rem 0 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .about__check {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .about__check-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      color: var(--red);
+    }
+    .about__check-text {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       FEATURES
+    ============================================================ */
+    .features__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .feature-card {
+      background: var(--surface);
+      padding: 2.5rem 2rem;
+      transition: background var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--red);
+      transition: width var(--transition);
+    }
+    .feature-card:hover { background: var(--surface2); }
+    .feature-card:hover::before { width: 100%; }
+    .feature-card__icon {
+      width: 44px;
+      height: 44px;
+      color: var(--red);
+      margin-bottom: 1.5rem;
+    }
+    .feature-card__title {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+    .feature-card__body {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       SERVICES
+    ============================================================ */
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      group: true;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 2px; height: 0;
+      background: var(--red);
+      transition: height var(--transition);
+    }
+    .service-card:hover {
+      border-color: rgba(204,0,0,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .service-card:hover::after { height: 100%; }
+    .service-card__icon {
+      width: 48px; height: 48px;
+      color: var(--red);
+      margin-bottom: 1.5rem;
+    }
+    .service-card__title {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 0.625rem;
+    }
+    .service-card__body {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+    .service-card__link {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap var(--transition);
+    }
+    .service-card__link:hover { gap: 0.7rem; }
+
+    /* ============================================================
+       PRICING
+    ============================================================ */
+    .pricing__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3.5rem;
+    }
+    .pricing-card {
+      background: var(--surface);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      transition: background var(--transition);
+    }
+    .pricing-card:hover { background: var(--surface2); }
+    .pricing-card--featured {
+      background: var(--surface2);
+      border-top: 2px solid var(--red);
+    }
+    .pricing-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 2px;
+      margin-bottom: 1.25rem;
+      width: fit-content;
+    }
+    .pricing-badge--popular { background: var(--red); color: var(--white); }
+    .pricing-badge--free { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); border: 1px solid var(--border); }
+    .pricing-plan-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 0.35rem;
+    }
+    .pricing-duration {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .pricing-price {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      letter-spacing: 0.02em;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .pricing-price-note {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .pricing-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 1.5rem;
+    }
+    .pricing-features {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+    }
+    .pricing-check {
+      flex-shrink: 0;
+      width: 16px; height: 16px;
+      color: var(--red);
+    }
+
+    /* ============================================================
+       OFFERS
+    ============================================================ */
+    .offers__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .offer-card {
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: var(--transition);
+    }
+    .offer-card:hover {
+      border-color: rgba(204,0,0,0.4);
+      transform: translateY(-3px);
+    }
+    .offer-card__icon {
+      width: 40px; height: 40px;
+      color: var(--red);
+      margin-bottom: 1.25rem;
+    }
+    .offer-card__title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .offer-card__highlight {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 0.625rem;
+    }
+    .offer-card__body {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       GALLERY
+    ============================================================ */
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 6px;
+      margin-top: 3rem;
+    }
+    .gallery__item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      background: var(--surface);
+    }
+    .gallery__item:nth-child(1) {
+      grid-column: 1 / 3;
+      aspect-ratio: 16/9;
+    }
+    .gallery__item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+      display: block;
+    }
+    .gallery__item:hover img { transform: scale(1.06); }
+    .gallery__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(204,0,0,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition);
+    }
+    .gallery__item:hover .gallery__overlay { background: rgba(204,0,0,0.35); }
+    .gallery__expand-icon {
+      width: 40px; height: 40px;
+      color: var(--white);
+      opacity: 0;
+      transform: scale(0.7);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    .gallery__item:hover .gallery__expand-icon {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox__img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+    }
+    .lightbox__close {
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      color: var(--white);
+      width: 36px; height: 36px;
+    }
+    .lightbox__close:hover { color: var(--red); }
+    .lightbox__nav {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      color: var(--white);
+      width: 44px; height: 44px;
+      transition: color var(--transition);
+    }
+    .lightbox__nav:hover { color: var(--red); }
+    .lightbox__prev { left: 1.5rem; }
+    .lightbox__next { right: 1.5rem; }
+    .lightbox__caption {
+      position: absolute;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ============================================================
+       BMI CALCULATOR
+    ============================================================ */
+    .bmi__wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      margin-top: 3rem;
+      max-width: 800px;
+    }
+    .bmi__fields {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .bmi__field label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .bmi__field input,
+    .bmi__field select {
+      width: 100%;
+      background: var(--black);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 0.875rem 1rem;
+      font-size: 0.9375rem;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color var(--transition);
+      appearance: none;
+    }
+    .bmi__field input:focus,
+    .bmi__field select:focus { border-color: var(--red); }
+    .bmi__field select option { background: var(--black); }
+    .bmi__result {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: none;
+    }
+    .bmi__result.visible { display: block; }
+    .bmi__score-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .bmi__score-num {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      letter-spacing: 0.02em;
+      color: var(--red);
+      line-height: 1;
+    }
+    .bmi__score-cat {
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .bmi__bar-track {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    .bmi__bar-fill {
+      height: 100%;
+      background: var(--red);
+      border-radius: 2px;
+      transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+    }
+    .bmi__bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .bmi__message {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ============================================================
+       HOURS
+    ============================================================ */
+    .hours__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .hours-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .hours-card__day {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    .hours-card__time {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 2px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .status-pill--open { background: rgba(34,197,94,0.12); color: #22c55e; }
+    .status-pill--closed { background: rgba(255,255,255,0.06); color: var(--muted); }
+    .status-pill__dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .hours__cta {
+      margin-top: 2.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .hours__cta-heading {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .hours__cta-body {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      max-width: 420px;
+    }
+    .hours__cta-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .testimonial-card {
+      background: var(--surface);
+      padding: 2.5rem 2rem;
+      transition: background var(--transition);
+    }
+    .testimonial-card:hover { background: var(--surface2); }
+    .testimonial-card__stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 1.25rem;
+    }
+    .testimonial-card__stars svg { width: 14px; height: 14px; color: var(--red); }
+    .testimonial-card__text {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .testimonial-card__author {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact__form-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-field {
+      margin-bottom: 1rem;
+    }
+    .form-field label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      background: var(--black);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 0.875rem 1rem;
+      font-size: 0.9375rem;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color var(--transition);
+      resize: vertical;
+      appearance: none;
+    }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: var(--muted); }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-color: var(--red); }
+    .form-field select option { background: var(--black); }
+    .form-feedback {
+      display: none;
+      font-size: 0.8125rem;
+      margin-top: 0.75rem;
+      font-weight: 500;
+    }
+    .form-feedback--error { color: #ff6b6b; }
+    .form-feedback--success { color: #22c55e; }
+    .form-feedback.visible { display: block; }
+
+    /* Contact info */
+    .contact__info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-info-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .contact-info-item__icon {
+      width: 40px; height: 40px;
+      background: rgba(204,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-info-item__icon svg { width: 18px; height: 18px; color: var(--red); }
+    .contact-info-item__label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .contact-info-item__value {
+      font-size: 0.9375rem;
+      color: var(--white);
+      line-height: 1.5;
+    }
+    .contact-info-item__value a {
+      color: var(--white);
+      transition: color var(--transition);
+    }
+    .contact-info-item__value a:hover { color: var(--red); }
+    .contact__map {
+      margin-top: 2rem;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .contact__map iframe {
+      width: 100%;
+      height: 240px;
+      display: block;
+      border: none;
+      filter: grayscale(1) brightness(0.7);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding-top: 5rem;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer__brand img { height: 40px; width: auto; margin-bottom: 1rem; }
+    .footer__tagline {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+    .footer__desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .footer__socials {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .footer__social-link {
+      width: 38px; height: 38px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .footer__social-link:hover { border-color: var(--red); background: rgba(204,0,0,0.1); }
+    .footer__social-link svg { width: 17px; height: 17px; color: var(--muted); transition: color var(--transition); }
+    .footer__social-link:hover svg { color: var(--red); }
+    .footer__col-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .footer__links a {
+      font-size: 0.875rem;
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+    .footer__links a:hover { color: var(--white); }
+    .footer__contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .footer__contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .footer__contact-item svg {
+      width: 14px; height: 14px;
+      color: var(--red);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .footer__contact-item span,
+    .footer__contact-item a {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.55;
+      transition: color var(--transition);
+    }
+    .footer__contact-item a:hover { color: var(--white); }
+    .footer__bottom {
+      padding: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer__copy {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ============================================================
+       FLOATING WHATSAPP
+    ============================================================ */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 800;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow: hidden;
+      border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      text-decoration: none;
+      transition: box-shadow var(--transition);
+    }
+    .whatsapp-float:hover {
+      box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+    }
+    .whatsapp-float__icon {
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border-radius: 50px;
+      transition: border-radius var(--transition), width var(--transition);
+    }
+    .whatsapp-float__icon svg {
+      width: 28px;
+      height: 28px;
+      color: #fff;
+    }
+    .whatsapp-float__label {
+      background: #25D366;
+      color: #fff;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      max-width: 0;
+      opacity: 0;
+      padding: 0;
+      transition: max-width 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s, padding 0.4s;
+      overflow: hidden;
+      border-radius: 0 50px 50px 0;
+    }
+    .whatsapp-float:hover .whatsapp-float__label {
+      max-width: 160px;
+      opacity: 1;
+      padding: 0 1.25rem 0 0.5rem;
+    }
+    .whatsapp-float:hover .whatsapp-float__icon { border-radius: 50px 0 0 50px; }
+
+    /* ============================================================
+       FADE-IN ON SCROLL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1100px) {
+      .pricing__grid { grid-template-columns: repeat(2, 1fr); }
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    }
+    @media (max-width: 900px) {
+      .about__grid { grid-template-columns: 1fr; gap: 4rem; }
+      .about__stat-badge { right: 0; bottom: -1.5rem; }
+      .features__grid { grid-template-columns: repeat(2, 1fr); }
+      .services__grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials__grid { grid-template-columns: 1fr; }
+      .contact__grid { grid-template-columns: 1fr; gap: 3rem; }
+      .hours__cta { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 680px) {
+      .section { padding: 5rem 0; }
+      .features__grid { grid-template-columns: 1fr; }
+      .services__grid { grid-template-columns: 1fr; }
+      .pricing__grid { grid-template-columns: 1fr; }
+      .offers__grid { grid-template-columns: 1fr; }
+      .gallery__grid { grid-template-columns: 1fr 1fr; }
+      .gallery__item:nth-child(1) { grid-column: 1 / -1; }
+      .hours__grid { grid-template-columns: 1fr; }
+      .footer__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero__stats { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+      .hero__stat { border-right: none; padding-right: 0; margin-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 1.25rem; }
+      .hero__stat:last-child { border-bottom: none; padding-bottom: 0; }
+      .bmi__fields { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact__form-wrap { padding: 2rem 1.5rem; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Scroll Progress Bar -->
-    <div id="progressBar"></div>
 
-    <!-- Navigation / Navbar -->
-    <nav id="navbar" class="navbar">
-        <div class="navbar-container">
-            <!-- Logo -->
-            <a href="#hero" class="navbar-logo">
-                <img src="logo.png" alt="BodyLife Fitness Hub Logo" class="navbar-logo-img" loading="lazy" decoding="async">
-                <span class="navbar-brand">BODYLIFE</span>
+  <!-- Progress Bar -->
+  <div id="progress-bar"></div>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#hero" class="navbar__logo">
+        <img src="images/logo.png" alt="BodyLife Fitness Hub">
+        <span class="navbar__brand">BODYLIFE</span>
+      </a>
+      <nav class="navbar__nav" aria-label="Primary">
+        <a href="#hero"         class="navbar__link active">Home</a>
+        <a href="#about"        class="navbar__link">About</a>
+        <a href="#services"     class="navbar__link">Services</a>
+        <a href="#pricing"      class="navbar__link">Pricing</a>
+        <a href="#gallery"      class="navbar__link">Gallery</a>
+        <a href="#contact"      class="navbar__link">Contact</a>
+      </nav>
+      <a href="#pricing" class="btn btn--primary navbar__cta">Join Now</a>
+      <button class="navbar__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="navbar__mobile" id="navMobile" aria-hidden="true">
+    <a href="#hero"     class="navbar__mobile-link" data-mobile-link>Home</a>
+    <a href="#about"    class="navbar__mobile-link" data-mobile-link>About</a>
+    <a href="#services" class="navbar__mobile-link" data-mobile-link>Services</a>
+    <a href="#pricing"  class="navbar__mobile-link" data-mobile-link>Pricing</a>
+    <a href="#gallery"  class="navbar__mobile-link" data-mobile-link>Gallery</a>
+    <a href="#contact"  class="navbar__mobile-link" data-mobile-link>Contact</a>
+    <a href="#pricing" class="btn btn--primary">Join Now</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero" class="hero">
+    <div class="hero__bg" id="heroBg"></div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        <span class="hero__badge-text">Since 2001 &nbsp;·&nbsp; Andheri East, Mumbai</span>
+      </div>
+      <h1 class="hero__title">
+        BETTER BODY.<br>BETTER <span class="hero__title-accent">LIFE.</span>
+      </h1>
+      <p class="hero__sub">Start Your Transformation Today</p>
+      <div class="hero__actions">
+        <a href="#pricing" class="btn btn--primary">
+          Join Now
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#services" class="btn btn--outline">View Plans</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <span class="hero__stat-num"><span class="counter" data-target="1200">0</span><span>+</span></span>
+          <p class="hero__stat-label">Active Members</p>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num"><span class="counter" data-target="20">0</span><span>+</span></span>
+          <p class="hero__stat-label">Years Experience</p>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num"><span class="counter" data-target="15">0</span><span>+</span></span>
+          <p class="hero__stat-label">Expert Trainers</p>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num"><span class="counter" data-target="98">0</span><span>%</span></span>
+          <p class="hero__stat-label">Success Rate</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero__scroll" aria-hidden="true">
+      <div class="hero__scroll-line"></div>
+      <span class="hero__scroll-text">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MARQUEE
+  ============================================================ -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <!-- duplicated for seamless loop -->
+      <span class="marquee-item"><span class="marquee-dot"></span>Weight Training</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Personal Training</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Zumba Classes</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Bollywood Dance</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Couple Programs</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Cardio Zone</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Certified Trainers</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Andheri East, Mumbai</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Weight Training</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Personal Training</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Zumba Classes</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Bollywood Dance</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Couple Programs</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Cardio Zone</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Certified Trainers</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Andheri East, Mumbai</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       ABOUT
+  ============================================================ -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__img-wrap reveal">
+          <div class="about__img-border"></div>
+          <img src="images/about.jpg" alt="BodyLife Fitness Hub gym floor" class="about__img" loading="lazy">
+          <div class="about__stat-badge">
+            <span class="about__stat-badge-num">20+</span>
+            <span class="about__stat-badge-label">Years of Excellence</span>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <p class="eyebrow">About Us</p>
+          <h2 class="section-title">Mumbai's Most Trusted <span>Fitness Hub</span></h2>
+          <p class="section-body">BodyLife Fitness Hub has been Andheri East's premier fitness destination since 2001. We combine modern equipment, certified guidance, and an electrifying environment to help you achieve real, lasting transformation.</p>
+          <div class="about__checks">
+            <div class="about__check">
+              <svg class="about__check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="about__check-text">Over 20 years of proven fitness experience</span>
+            </div>
+            <div class="about__check">
+              <svg class="about__check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="about__check-text">Certified trainers with personalized coaching approach</span>
+            </div>
+            <div class="about__check">
+              <svg class="about__check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="about__check-text">Modern equipment and hygienic, maintained facilities</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn--primary">
+            Get Started
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURES
+  ============================================================ -->
+  <section class="section section--dark">
+    <div class="container">
+      <p class="eyebrow reveal">Why Choose Us</p>
+      <h2 class="section-title reveal reveal-delay-1">Built Around <span>Your Results</span></h2>
+      <div class="features__grid" style="margin-top:3rem;">
+        <div class="feature-card reveal">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6.5 6.5h11M6.5 6.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm11 0a2 2 0 1 0 4 0 2 2 0 0 0-4 0zM2 10h2v4H2zm18 0h2v4h-2zM4 12h16M8 6.5V17.5m8-11V17.5"/>
+          </svg>
+          <h3 class="feature-card__title">Modern Equipment</h3>
+          <p class="feature-card__body">Premium strength and cardio machines maintained to the highest standards for safe, effective training.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/><path d="M17 10h4m-2-2v4"/>
+          </svg>
+          <h3 class="feature-card__title">Expert Trainers</h3>
+          <p class="feature-card__body">Nationally certified coaches who design programs around your specific body, goals, and timeline.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10M7 12h7M7 16h5"/>
+          </svg>
+          <h3 class="feature-card__title">Personalized Plans</h3>
+          <p class="feature-card__body">Every member receives a custom workout and nutrition roadmap tailored to their unique body type.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3l8 4v5c0 5-4 9-8 10C8 21 4 17 4 12V7l8-4z"/>
+          </svg>
+          <h3 class="feature-card__title">Clean &amp; Hygienic</h3>
+          <p class="feature-card__body">Sanitized daily with dedicated shower rooms and secure locker facilities for your comfort.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          </svg>
+          <h3 class="feature-card__title">Flexible Hours</h3>
+          <p class="feature-card__body">Open from 6 AM to 11 PM Monday through Saturday so your schedule is never an excuse.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <h3 class="feature-card__title">Results Guaranteed</h3>
+          <p class="feature-card__body">Our 98% member satisfaction rate speaks for itself. Real transformation, not just promises.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES
+  ============================================================ -->
+  <section id="services" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Our Services</p>
+      <h2 class="section-title reveal reveal-delay-1">Classes &amp; <span>Programs</span></h2>
+      <div class="services__grid" style="margin-top:3rem;">
+
+        <article class="service-card reveal">
+          <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6.5 6.5h11M6.5 6.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm11 0a2 2 0 1 0 4 0 2 2 0 0 0-4 0zM2 10h2v4H2zm18 0h2v4h-2zM4 12h16M8 6.5V17.5m8-11V17.5"/>
+          </svg>
+          <h3 class="service-card__title">Weight Training</h3>
+          <p class="service-card__body">Build raw, functional strength using free weights, barbells, and cable machines under expert supervision.</p>
+          <a href="#contact" class="service-card__link">
+            Enquire Now
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="service-card reveal reveal-delay-1">
+          <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+          <h3 class="service-card__title">Cardio Zone</h3>
+          <p class="service-card__body">High-energy treadmills, ellipticals, stationary bikes, and rowing machines for peak cardiovascular fitness.</p>
+          <a href="#contact" class="service-card__link">
+            Enquire Now
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="service-card reveal reveal-delay-2">
+          <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/>
+          </svg>
+          <h3 class="service-card__title">Zumba Classes</h3>
+          <p class="service-card__body">Burn up to 600 calories per session with our high-energy Latin-inspired dance fitness classes for all levels.</p>
+          <a href="#contact" class="service-card__link">
+            Enquire Now
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="service-card reveal reveal-delay-1">
+          <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+          </svg>
+          <h3 class="service-card__title">Bollywood Dance</h3>
+          <p class="service-card__body">Burn calories to your favourite Bollywood beats in a joyful, high-energy group class environment.</p>
+          <a href="#contact" class="service-card__link">
+            Enquire Now
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="service-card reveal reveal-delay-2">
+          <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/>
+          </svg>
+          <h3 class="service-card__title">Personal Training</h3>
+          <p class="service-card__body">One-on-one sessions with a dedicated certified trainer who tracks every rep, set, and meal plan.</p>
+          <a href="#contact" class="service-card__link">
+            Enquire Now
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="service-card reveal reveal-delay-3">
+          <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="7" r="3"/><circle cx="15" cy="7" r="3"/><path d="M3 20v-1a6 6 0 0 1 6-6h6a6 6 0 0 1 6 6v1"/>
+          </svg>
+          <h3 class="service-card__title">Couple Training</h3>
+          <p class="service-card__body">Train side-by-side with your partner on a shared program designed to build fitness and bonds together.</p>
+          <a href="#contact" class="service-card__link">
+            Enquire Now
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRICING
+  ============================================================ -->
+  <section id="pricing" class="section section--dark">
+    <div class="container">
+      <p class="eyebrow reveal">Membership Plans</p>
+      <h2 class="section-title reveal reveal-delay-1">Find Your <span>Perfect Plan</span></h2>
+      <p class="section-body reveal reveal-delay-2">No registration fee this month. Transparent pricing, no hidden costs.</p>
+      <div class="pricing__grid">
+
+        <article class="pricing-card reveal">
+          <span class="pricing-plan-name">Starter</span>
+          <p class="pricing-duration">1 Month</p>
+          <p class="pricing-price">₹1,499</p>
+          <p class="pricing-price-note">per month, billed once</p>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Full gym floor access
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              All equipment included
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Shower &amp; locker facility
+            </li>
+          </ul>
+          <a href="#contact" class="btn btn--outline" style="width:100%;justify-content:center;">Get Started</a>
+        </article>
+
+        <article class="pricing-card reveal reveal-delay-1">
+          <span class="pricing-plan-name">Progress</span>
+          <p class="pricing-duration">3 Months</p>
+          <p class="pricing-price">₹3,999</p>
+          <p class="pricing-price-note">billed once, save 11%</p>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Full gym floor access
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              All equipment included
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Shower &amp; locker facility
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Initial fitness assessment
+            </li>
+          </ul>
+          <a href="#contact" class="btn btn--outline" style="width:100%;justify-content:center;">Get Started</a>
+        </article>
+
+        <article class="pricing-card pricing-card--featured reveal reveal-delay-2">
+          <span class="pricing-badge pricing-badge--popular">Most Popular</span>
+          <span class="pricing-plan-name">Transform</span>
+          <p class="pricing-duration">6 Months</p>
+          <p class="pricing-price">₹5,999</p>
+          <p class="pricing-price-note">billed once, save 17%</p>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Full gym floor access
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              All equipment included
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Shower &amp; locker facility
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Initial fitness assessment
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Zumba &amp; Bollywood Dance
+            </li>
+          </ul>
+          <a href="#contact" class="btn btn--primary" style="width:100%;justify-content:center;">Get Started</a>
+        </article>
+
+        <article class="pricing-card reveal reveal-delay-3">
+          <span class="pricing-badge pricing-badge--free">1 Month Free</span>
+          <span class="pricing-plan-name">Elite</span>
+          <p class="pricing-duration">12 Months</p>
+          <p class="pricing-price">₹7,999</p>
+          <p class="pricing-price-note">billed once, best value</p>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Full gym floor access
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              All equipment included
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Shower &amp; locker facility
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Initial fitness assessment
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Zumba &amp; Bollywood Dance
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Priority trainer access
+            </li>
+            <li>
+              <svg class="pricing-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Transformation challenge entry
+            </li>
+          </ul>
+          <a href="#contact" class="btn btn--outline" style="width:100%;justify-content:center;">Get Started</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SPECIAL OFFERS
+  ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Limited Time</p>
+      <h2 class="section-title reveal reveal-delay-1">Special <span>Offers</span></h2>
+      <div class="offers__grid">
+
+        <div class="offer-card reveal">
+          <svg class="offer-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="7" r="3"/><circle cx="15" cy="7" r="3"/><path d="M3 20v-1a6 6 0 0 1 6-6h6a6 6 0 0 1 6 6v1"/>
+          </svg>
+          <p class="offer-card__title">Refer a Friend</p>
+          <p class="offer-card__highlight">Get ₹500 Off</p>
+          <p class="offer-card__body">Bring a friend and both of you receive ₹500 off your next membership renewal.</p>
+        </div>
+
+        <div class="offer-card reveal reveal-delay-1">
+          <svg class="offer-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+          </svg>
+          <p class="offer-card__title">This Month Only</p>
+          <p class="offer-card__highlight">Zero Registration Fee</p>
+          <p class="offer-card__body">Join this month and the registration fee is completely waived for all membership plans.</p>
+        </div>
+
+        <div class="offer-card reveal reveal-delay-2">
+          <svg class="offer-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <p class="offer-card__title">Transformation Challenge</p>
+          <p class="offer-card__highlight">Win Exciting Rewards</p>
+          <p class="offer-card__body">Enter our quarterly challenge and compete for premium fitness gear and cash prizes.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALLERY
+  ============================================================ -->
+  <section id="gallery" class="section section--dark">
+    <div class="container">
+      <p class="eyebrow reveal">Our Gym</p>
+      <h2 class="section-title reveal reveal-delay-1">A Look <span>Inside</span></h2>
+      <div class="gallery__grid">
+        <button type="button" class="gallery__item reveal" data-src="images/gallery1.jpg" data-caption="Premium Strength Deck">
+          <img src="images/gallery1.jpg" alt="Premium strength deck" loading="lazy">
+          <div class="gallery__overlay">
+            <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </button>
+        <button type="button" class="gallery__item reveal reveal-delay-1" data-src="images/gallery2.jpg" data-caption="Modern Cardio Zone">
+          <img src="images/gallery2.jpg" alt="Modern cardio zone" loading="lazy">
+          <div class="gallery__overlay">
+            <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </button>
+        <button type="button" class="gallery__item reveal reveal-delay-2" data-src="images/gallery3.jpg" data-caption="Motivational Wall Murals">
+          <img src="images/gallery3.jpg" alt="Motivational wall murals" loading="lazy">
+          <div class="gallery__overlay">
+            <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </button>
+        <button type="button" class="gallery__item reveal reveal-delay-1" data-src="images/gallery4.jpg" data-caption="Community Training Space">
+          <img src="images/gallery4.jpg" alt="Community training space" loading="lazy">
+          <div class="gallery__overlay">
+            <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </button>
+        <button type="button" class="gallery__item reveal reveal-delay-2" data-src="images/gallery5.jpg" data-caption="High-Performance Strength Equipment">
+          <img src="images/gallery5.jpg" alt="High-performance equipment" loading="lazy">
+          <div class="gallery__overlay">
+            <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </button>
+        <button type="button" class="gallery__item reveal reveal-delay-3" data-src="images/gallery6.jpg" data-caption="Premium Lifting Corner">
+          <img src="images/gallery6.jpg" alt="Premium lifting corner" loading="lazy">
+          <div class="gallery__overlay">
+            <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery viewer">
+    <button class="lightbox__close" id="lbClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__prev" id="lbPrev" aria-label="Previous">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <img class="lightbox__img" id="lbImg" src="" alt="">
+    <button class="lightbox__nav lightbox__next" id="lbNext" aria-label="Next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <p class="lightbox__caption" id="lbCaption"></p>
+  </div>
+
+  <!-- ============================================================
+       BMI CALCULATOR
+  ============================================================ -->
+  <section id="bmi" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Health Tool</p>
+      <h2 class="section-title reveal reveal-delay-1">Calculate Your <span>BMI</span></h2>
+      <div class="bmi__wrap reveal reveal-delay-2">
+        <form id="bmiForm">
+          <div class="bmi__fields">
+            <div class="bmi__field">
+              <label for="bmiWeight">Weight (kg)</label>
+              <input type="number" id="bmiWeight" placeholder="e.g. 70" min="1" step="0.1" required>
+            </div>
+            <div class="bmi__field">
+              <label for="bmiHeight">Height (cm)</label>
+              <input type="number" id="bmiHeight" placeholder="e.g. 175" min="1" step="0.1" required>
+            </div>
+            <div class="bmi__field">
+              <label for="bmiAge">Age</label>
+              <input type="number" id="bmiAge" placeholder="e.g. 25" min="1" required>
+            </div>
+            <div class="bmi__field">
+              <label for="bmiGender">Gender</label>
+              <select id="bmiGender" required>
+                <option value="" disabled selected>Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn--primary">
+            Calculate BMI
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+        <div class="bmi__result" id="bmiResult">
+          <div class="bmi__score-row">
+            <span class="bmi__score-num" id="bmiScore">0.0</span>
+            <span class="bmi__score-cat" id="bmiCat"></span>
+          </div>
+          <div class="bmi__bar-track"><div class="bmi__bar-fill" id="bmiBar"></div></div>
+          <div class="bmi__bar-labels"><span>Underweight</span><span>Normal</span><span>Overweight</span><span>Obese</span></div>
+          <p class="bmi__message" id="bmiMsg"></p>
+          <a href="#contact" class="btn btn--primary">Start Your Journey</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOURS
+  ============================================================ -->
+  <section id="hours" class="section section--dark">
+    <div class="container">
+      <p class="eyebrow reveal">Gym Hours</p>
+      <h2 class="section-title reveal reveal-delay-1">We're <span>Open</span></h2>
+      <div class="hours__grid">
+        <div class="hours-card reveal">
+          <div>
+            <p class="hours-card__day">Monday — Saturday</p>
+            <p class="hours-card__time">6:00 AM – 11:00 PM</p>
+          </div>
+          <span class="status-pill" id="statusWeekday">
+            <span class="status-pill__dot"></span>
+            Checking…
+          </span>
+        </div>
+        <div class="hours-card reveal reveal-delay-1">
+          <div>
+            <p class="hours-card__day">Sunday</p>
+            <p class="hours-card__time">10:00 AM – 2:00 PM</p>
+          </div>
+          <span class="status-pill" id="statusSunday">
+            <span class="status-pill__dot"></span>
+            Checking…
+          </span>
+        </div>
+      </div>
+      <div class="hours__cta reveal">
+        <div>
+          <h3 class="hours__cta-heading">Ready to Start Today?</h3>
+          <p class="hours__cta-body">Call or WhatsApp us to enquire about membership and begin your transformation.</p>
+        </div>
+        <div class="hours__cta-actions">
+          <a href="tel:9821777160" class="btn btn--outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call Now
+          </a>
+          <a href="https://wa.me/919821777160" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 0 0-5.031 1.378L2.71 8l1.518 4.674a9.868 9.868 0 0 0-.028.878c0 5.442 4.432 9.874 9.875 9.874 2.64 0 5.122-1.03 6.988-2.898a9.825 9.825 0 0 0 2.893-6.994c-.003-5.45-4.437-9.884-9.881-9.884m0-2c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"/>
+            </svg>
+            WhatsApp Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIALS
+  ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Success Stories</p>
+      <h2 class="section-title reveal reveal-delay-1">What Our <span>Members Say</span></h2>
+      <div class="testimonials__grid">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-card__text">"BodyLife completely transformed my approach to fitness. The trainers are knowledgeable, the environment is motivating, and the results are real."</p>
+          <p class="testimonial-card__author">Raj Kumar</p>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="testimonial-card__stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-card__text">"Best gym in Andheri East, no question. The facilities are spotless, the equipment is top-tier, and the Zumba classes are incredible."</p>
+          <p class="testimonial-card__author">Priya Sharma</p>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="testimonial-card__stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-card__text">"I lost 15 kg in 6 months with their personalized training program. The coaches pushed me to my limits in the best possible way."</p>
+          <p class="testimonial-card__author">Arjun Verma</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section id="contact" class="section section--dark">
+    <div class="container">
+      <p class="eyebrow reveal">Get in Touch</p>
+      <h2 class="section-title reveal reveal-delay-1">Contact <span>Us</span></h2>
+      <div class="contact__grid" style="margin-top:3rem;">
+
+        <div class="contact__form-wrap reveal">
+          <form id="contactForm" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="New BodyLife Enquiry">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" style="display:none;" autocomplete="off">
+            <div class="form-row">
+              <div class="form-field">
+                <label>Full Name</label>
+                <input type="text" name="name" placeholder="Your full name" required>
+              </div>
+              <div class="form-field">
+                <label>Phone Number</label>
+                <input type="tel" name="phone" placeholder="Your number" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="your@email.com" required>
+              </div>
+              <div class="form-field">
+                <label>Membership Interest</label>
+                <select name="interest" required>
+                  <option value="" disabled selected>Select plan</option>
+                  <option>1 Month</option>
+                  <option>3 Months</option>
+                  <option>6 Months</option>
+                  <option>12 Months</option>
+                  <option>Just Enquiring</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Message</label>
+              <textarea name="message" rows="4" placeholder="How can we help you?"></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary">
+              Send Enquiry
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <p class="form-feedback form-feedback--error" id="formError"></p>
+            <p class="form-feedback form-feedback--success" id="formSuccess">We'll contact you within 24 hours.</p>
+          </form>
+        </div>
+
+        <div class="contact__info reveal reveal-delay-2">
+          <div class="contact-info-item">
+            <div class="contact-info-item__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-item__label">Address</p>
+              <p class="contact-info-item__value">Sahar Road, Chakala,<br>Andheri East, Mumbai 400099</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-item__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-item__label">Phone</p>
+              <p class="contact-info-item__value"><a href="tel:9821777160">+91 98217 77160</a></p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-item__icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 0 0-5.031 1.378L2.71 8l1.518 4.674A9.868 9.868 0 0 0 4.2 13.553C4.2 19 8.63 23.427 14.076 23.427c2.64 0 5.122-1.03 6.988-2.898a9.825 9.825 0 0 0 2.893-6.994c-.003-5.45-4.437-9.884-9.881-9.884m0-2C18.627 2 24 7.373 24 14S18.627 26 12 26 0 20.627 0 14 5.373 2 12 2z" transform="scale(0.92) translate(1,1)"/>
+              </svg>
+            </div>
+            <div>
+              <p class="contact-info-item__label">WhatsApp</p>
+              <p class="contact-info-item__value"><a href="https://wa.me/919821777160" target="_blank" rel="noopener">+91 98217 77160</a></p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-item__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-item__label">Instagram</p>
+              <p class="contact-info-item__value"><a href="https://instagram.com/body.lifefitnesshub" target="_blank" rel="noopener">@body.lifefitnesshub</a></p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-item__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-item__label">Opening Hours</p>
+              <p class="contact-info-item__value">Mon–Sat: 6:00 AM – 11:00 PM<br>Sunday: 10:00 AM – 2:00 PM</p>
+            </div>
+          </div>
+          <div class="contact__map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30265.62590451999!2d72.86267695575081!3d19.108664932565485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c83c4b079603%3A0xddaa8ef1e40fbf36!2sChakala%2C%20Andheri%20East%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="BodyLife Fitness Hub location"></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="images/logo.png" alt="BodyLife Fitness Hub">
+          <p class="footer__tagline">Better Body. Better Life.</p>
+          <p class="footer__desc">Mumbai's premier fitness destination since 2001. Transform your body, elevate your life.</p>
+          <div class="footer__socials">
+            <a href="https://instagram.com/body.lifefitnesshub" target="_blank" rel="noopener" class="footer__social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
             </a>
-
-            <!-- Desktop Navigation Links -->
-            <ul class="navbar-menu" id="navbarMenu">
-                <li class="nav-item"><a href="#hero" class="nav-link" data-section="hero">HOME</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link" data-section="about">ABOUT</a></li>
-                <li class="nav-item"><a href="#services" class="nav-link" data-section="services">SERVICES</a></li>
-                <li class="nav-item"><a href="#pricing" class="nav-link" data-section="pricing">PRICING</a></li>
-                <li class="nav-item"><a href="#gallery" class="nav-link" data-section="gallery">GALLERY</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link" data-section="contact">CONTACT</a></li>
-            </ul>
-
-            <!-- Join Now Button (Desktop) -->
-            <button class="navbar-btn navbar-cta" id="joinNowDesktop" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">
-                JOIN NOW
-            </button>
-
-            <!-- Hamburger Menu Toggle -->
-            <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-
-            <!-- Mobile Menu Backdrop -->
-            <div class="navbar-backdrop" id="navbarBackdrop"></div>
-
-            <!-- Mobile Menu -->
-            <div class="navbar-mobile-menu" id="navbarMobileMenu">
-                <ul class="navbar-mobile-list">
-                    <li><a href="#hero" class="navbar-mobile-link" data-section="hero">HOME</a></li>
-                    <li><a href="#about" class="navbar-mobile-link" data-section="about">ABOUT</a></li>
-                    <li><a href="#services" class="navbar-mobile-link" data-section="services">SERVICES</a></li>
-                    <li><a href="#pricing" class="navbar-mobile-link" data-section="pricing">PRICING</a></li>
-                    <li><a href="#gallery" class="navbar-mobile-link" data-section="gallery">GALLERY</a></li>
-                    <li><a href="#contact" class="navbar-mobile-link" data-section="contact">CONTACT</a></li>
-                </ul>
-                <!-- Join Now Button (Mobile) -->
-                <button class="navbar-btn navbar-cta navbar-mobile-cta" id="joinNowMobile" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">
-                    JOIN NOW
-                </button>
-            </div>
+            <a href="https://wa.me/919821777160" target="_blank" rel="noopener" class="footer__social-link" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 0 0-5.031 1.378L2.71 8l1.518 4.674A9.868 9.868 0 0 0 4.2 13.553C4.2 19 8.63 23.427 14.076 23.427c2.64 0 5.122-1.03 6.988-2.898a9.825 9.825 0 0 0 2.893-6.994c-.003-5.45-4.437-9.884-9.881-9.884m0-2C18.627 2 24 7.373 24 14S18.627 26 12 26 0 20.627 0 14 5.373 2 12 2z" transform="scale(0.9) translate(1.3,1.3)"/>
+              </svg>
+            </a>
+          </div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <!-- Background overlay with parallax -->
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-
-        <!-- Hero content container -->
-        <div class="hero-content">
-            <!-- Badge label -->
-            <div class="hero-badge">
-                <span class="badge-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#CC0000" stroke="#CC0000" stroke-width="1" stroke-linejoin="round"/>
-                    </svg>
-                </span>
-                <span class="badge-text">SINCE 2001 • ANDHERI EAST, MUMBAI</span>
-            </div>
-
-            <!-- Main heading -->
-            <h1 class="hero-title">
-                <span class="hero-title-line hero-title-line-1">BETTER BODY.</span>
-                <span class="hero-title-line hero-title-line-2">BETTER <span class="hero-accent">LIFE.</span></span>
-            </h1>
-
-            <!-- Subheading -->
-            <p class="hero-subheading">Start Your Transformation Today</p>
-
-            <!-- CTA buttons -->
-            <div class="hero-buttons">
-                <button class="hero-btn hero-btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">
-                    JOIN NOW
-                    <span class="btn-arrow">→</span>
-                </button>
-                <button class="hero-btn hero-btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
-                    VIEW PLANS
-                </button>
-            </div>
-
-            <!-- Stats bar -->
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <span class="stat-number" data-target="500">0</span>
-                    <span class="stat-label">Members</span>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div class="hero-stat">
-                    <span class="stat-number" data-target="20">0</span>
-                    <span class="stat-label">Years</span>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div class="hero-stat">
-                    <span class="stat-label-only">Expert Trainers</span>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div class="hero-stat">
-                    <span class="stat-label-only">Results Guaranteed</span>
-                </div>
-            </div>
+        <div>
+          <p class="footer__col-title">Quick Links</p>
+          <ul class="footer__links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </div>
-
-        <!-- Scroll indicator -->
-        <div class="hero-scroll-indicator">
-            <div class="scroll-arrow"></div>
-            <p>Scroll to explore</p>
+        <div>
+          <p class="footer__col-title">Programs</p>
+          <ul class="footer__links">
+            <li><a href="#services">Weight Training</a></li>
+            <li><a href="#services">Cardio Zone</a></li>
+            <li><a href="#services">Zumba Classes</a></li>
+            <li><a href="#services">Bollywood Dance</a></li>
+            <li><a href="#services">Personal Training</a></li>
+            <li><a href="#services">Couple Training</a></li>
+          </ul>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section section-about">
-        <div class="container about-container">
-            <div class="about-image-wrap" data-aos="fade-right">
-                <div class="about-image-border"></div>
-                <img src="about.jpg" alt="About BodyLife Fitness Hub" class="about-image" loading="lazy" decoding="async">
-                <div class="about-image-overlay"></div>
-            </div>
-            <div class="about-copy" data-aos="fade-left">
-                <p class="section-label">— ABOUT US</p>
-                <h2 class="section-heading">We Have Lot Of Experience In Gym Training</h2>
-                <p class="section-paragraph">BodyLife Fitness Hub has been Mumbai's trusted fitness destination since 2001. We combine modern equipment, expert guidance, and a motivating environment to help you achieve real, lasting results.</p>
-                <div class="about-features">
-                    <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
-                        <span class="feature-icon">✓</span>
-                        <p>Over 20 years of proven fitness experience</p>
-                    </div>
-                    <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
-                        <span class="feature-icon">✓</span>
-                        <p>Certified trainers with personalized approach</p>
-                    </div>
-                    <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
-                        <span class="feature-icon">✓</span>
-                        <p>Modern Warasa equipment &amp; hygienic facilities</p>
-                    </div>
-                </div>
-                <button class="btn btn-primary about-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
-                    Get Started
-                    <span class="btn-arrow">→</span>
-                </button>
-            </div>
+        <div>
+          <p class="footer__col-title">Contact</p>
+          <ul class="footer__contact-list">
+            <li class="footer__contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Sahar Road, Chakala, Andheri East, Mumbai 400099</span>
+            </li>
+            <li class="footer__contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:9821777160">+91 98217 77160</a>
+            </li>
+            <li class="footer__contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <span>Mon–Sat: 6AM–11PM &nbsp;|&nbsp; Sun: 10AM–2PM</span>
+            </li>
+          </ul>
         </div>
-    </section>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2025 BodyLife Fitness Hub. All Rights Reserved.</p>
+        <p class="footer__copy" style="color:#444;">Andheri East, Mumbai</p>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Features Section -->
-    <section id="features" class="section bg-dark">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Why Choose Us</h2>
-            <div class="features-grid">
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="50">
-                    <div class="feature-icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13 6.5c0-1.933 1.567-3.5 3.5-3.5S20 4.567 20 6.5 18.433 10 16.5 10 13 8.433 13 6.5z" fill="#CC0000"/>
-                            <path d="M4 8h3v10H4V8z" fill="#CC0000"/>
-                            <path d="M17 11h3v7h-3v-7z" fill="#CC0000"/>
-                            <path d="M4 20h16v2H4v-2z" fill="#CC0000"/>
-                            <path d="M9 11c-.552 0-1-.448-1-1V8c0-.552.448-1 1-1s1 .448 1 1v2c0 .552-.448 1-1 1z" fill="#CC0000"/>
-                        </svg>
-                    </div>
-                    <h3>Modern Equipment</h3>
-                    <p>Latest Warasa fitness equipment for safe and effective training</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="8" r="4" fill="#CC0000"/>
-                            <path d="M12 14c-4 0-6 2-6 4v4h12v-4c0-2-2-4-6-4z" fill="#CC0000"/>
-                            <rect x="17" y="10" width="5" height="2" fill="#CC0000"/>
-                            <rect x="17" y="13" width="5" height="2" fill="#CC0000"/>
-                        </svg>
-                    </div>
-                    <h3>Expert Trainers</h3>
-                    <p>Certified professionals dedicated to your success and safety</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="150">
-                    <div class="feature-icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="3" y="3" width="14" height="18" rx="2" fill="none" stroke="#CC0000" stroke-width="2"/>
-                            <line x1="7" y1="8" x2="14" y2="8" stroke="#CC0000" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="7" y1="12" x2="14" y2="12" stroke="#CC0000" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="7" y1="16" x2="14" y2="16" stroke="#CC0000" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="18" y1="5" x2="20" y2="3" stroke="#CC0000" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <h3>Personalized Plans</h3>
-                    <p>Customized workout regimens tailored to your goals</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L15 10H23L17 15L19 23L12 18L5 23L7 15L1 10H9L12 2Z" fill="#CC0000"/>
-                        </svg>
-                    </div>
-                    <h3>Clean Environment</h3>
-                    <p>Hygienic facilities maintained to the highest standards</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="250">
-                    <div class="feature-icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 2H5C3.9 2 3 2.9 3 4V10C3 11.1 3.9 12 5 12H7V14H5V16H19V14H17V12H19C20.1 12 21 11.1 21 10V4C21 2.9 20.1 2 19 2ZM9 8H7V6H9V8ZM13 8H11V6H13V8ZM17 8H15V6H17V8Z" fill="#CC0000"/>
-                            <circle cx="9" cy="18" r="1.5" fill="#CC0000"/>
-                            <circle cx="13" cy="18" r="1.5" fill="#CC0000"/>
-                            <circle cx="17" cy="18" r="1.5" fill="#CC0000"/>
-                        </svg>
-                    </div>
-                    <h3>Shower & Lockers</h3>
-                    <p>Convenient facilities for your comfort and convenience</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="10" fill="none" stroke="#CC0000" stroke-width="2"/>
-                            <circle cx="12" cy="12" r="6" fill="none" stroke="#CC0000" stroke-width="2"/>
-                            <circle cx="12" cy="12" r="2" fill="#CC0000"/>
-                        </svg>
-                    </div>
-                    <h3>Results Guaranteed</h3>
-                    <p>Proven track record of delivering transformations</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- ============================================================
+       FLOATING WHATSAPP BUTTON
+  ============================================================ -->
+  <a href="https://wa.me/919821777160" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+    <div class="whatsapp-float__icon">
+      <!-- Official WhatsApp SVG path -->
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 0 0-5.031 1.378L2.71 8l1.518 4.674A9.868 9.868 0 0 0 4.2 13.553C4.2 19 8.632 23.427 14.079 23.427c2.64 0 5.122-1.03 6.988-2.898a9.825 9.825 0 0 0 2.893-6.994c-.003-5.45-4.437-9.884-9.881-9.884m0-2C18.627 0 24 5.373 24 12S18.627 24 12 24 0 18.627 0 12 5.373 0 12 0z"/>
+      </svg>
+    </div>
+    <span class="whatsapp-float__label">Chat with us</span>
+  </a>
 
-    <!-- Feature Highlight Strip -->
-    <section id="features-strip" class="section section-features-strip">
-        <div class="container features-strip-container">
-            <div class="feature-strip-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="feature-strip-icon" aria-hidden="true">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 11H18V8H16V11H8V8H6V11H4V13H6V16H8V13H16V16H18V13H20V11Z" fill="#CC0000"/>
-                        <path d="M2 11H4V13H2V11Z" fill="#CC0000"/>
-                    </svg>
-                </div>
-                <h3>Modern Equipment</h3>
-                <p>Latest Warasa fitness machines &amp; advanced tools</p>
-            </div>
-            <div class="feature-strip-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="feature-strip-icon" aria-hidden="true">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" fill="#CC0000"/>
-                        <path d="M4 20C4 16.6863 6.68629 14 10 14H14C17.3137 14 20 16.6863 20 20V22H4V20Z" fill="#CC0000"/>
-                    </svg>
-                </div>
-                <h3>Expert Trainers</h3>
-                <p>Certified &amp; experienced coaches for every goal</p>
-            </div>
-            <div class="feature-strip-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="feature-strip-icon" aria-hidden="true">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 3H17V5H7V3Z" fill="#CC0000"/>
-                        <path d="M5 7H19V19H5V7Z" stroke="#CC0000" stroke-width="2"/>
-                        <path d="M9 11H15" stroke="#CC0000" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M9 15H13" stroke="#CC0000" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </div>
-                <h3>Personal Plans</h3>
-                <p>Custom workout plans designed for your body</p>
-            </div>
-            <div class="feature-strip-card" data-aos="fade-up" data-aos-delay="400">
-                <div class="feature-strip-icon" aria-hidden="true">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 3L4 6V11C4 16.55 7.85 21.74 12 23C16.15 21.74 20 16.55 20 11V6L12 3Z" fill="#CC0000"/>
-                        <path d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z" fill="#0a0a0a"/>
-                    </svg>
-                </div>
-                <h3>Clean &amp; Hygienic</h3>
-                <p>Sanitized daily with shower &amp; locker facility</p>
-            </div>
-            <div class="feature-strip-card" data-aos="fade-up" data-aos-delay="500">
-                <div class="feature-strip-icon" aria-hidden="true">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" fill="#CC0000"/>
-                    </svg>
-                </div>
-                <h3>Results Guaranteed</h3>
-                <p>Join today and transform tomorrow</p>
-            </div>
-        </div>
-    </section>
+  <!-- ============================================================
+       JAVASCRIPT — all self-contained, no external dependencies
+  ============================================================ -->
+  <script>
+  (function () {
+    'use strict';
 
-    <!-- Services Section -->
-    <section id="services" class="section section-services">
-        <div class="container">
-            <p class="section-label">— OUR SERVICES</p>
-            <h2 class="section-title" data-aos="fade-up">Our Gym Classes</h2>
-            <div class="services-grid">
-                <article class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 4C6 2.89543 6.89543 2 8 2C9.10457 2 10 2.89543 10 4C10 5.10457 9.10457 6 8 6C6.89543 6 6 5.10457 6 4Z" fill="currentColor"/>
-                            <path d="M14 4C14 2.89543 14.8954 2 16 2C17.1046 2 18 2.89543 18 4C18 5.10457 17.1046 6 16 6C14.8954 6 14 5.10457 14 4Z" fill="currentColor"/>
-                            <path d="M4 8C4 7.44772 4.44772 7 5 7C5.55228 7 6 7.44772 6 8V22C6 22.5523 5.55228 23 5 23C4.44772 23 4 22.5523 4 22V8Z" fill="currentColor"/>
-                            <path d="M10 8C10 7.44772 10.4477 7 11 7C11.5523 7 12 7.44772 12 8V22C12 22.5523 11.5523 23 11 23C10.4477 23 10 22.5523 10 22V8Z" fill="currentColor"/>
-                            <path d="M16 8C16 7.44772 16.4477 7 17 7C17.5523 7 18 7.44772 18 8V22C18 22.5523 17.5523 23 17 23C16.4477 23 16 22.5523 16 22V8Z" fill="currentColor"/>
-                            <path d="M20 8C20 7.44772 20.4477 7 21 7C21.5523 7 22 7.44772 22 8V22C22 22.5523 21.5523 23 21 23C20.4477 23 20 22.5523 20 22V8Z" fill="currentColor"/>
-                        </svg>
-                    </div>
-                    <h3>Weight Training</h3>
-                    <p>Build raw strength with free weights &amp; machines</p>
-                    <a class="service-link" href="#contact">Learn More →</a>
-                </article>
-                <article class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="5" r="3" fill="currentColor"/>
-                            <path d="M12 9C11 10 10 11 9 13C7.82843 14.1716 7 15.8284 7 17.5C7 20.0294 8.79086 22 11 22H13C15.2091 22 17 20.0294 17 17.5C17 15.8284 16.1716 14.1716 15 13C14 11 13 10 12 9Z" fill="currentColor"/>
-                            <path d="M9 13L6 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M15 13L18 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <h3>Cardio Zone</h3>
-                    <p>High-intensity cardio equipment &amp; running tracks</p>
-                    <a class="service-link" href="#contact">Learn More →</a>
-                </article>
-                <article class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="currentColor"/>
-                            <path d="M12.5 7H11V13L16.2 16.5L17 15.3L12.5 12.4V7Z" fill="currentColor"/>
-                            <path d="M12 8C10.9 8 10 8.9 10 10C10 11.1 10.9 12 12 12C13.1 12 14 11.1 14 10C14 8.9 13.1 8 12 8Z" fill="currentColor"/>
-                        </svg>
-                    </div>
-                    <h3>Zumba Classes</h3>
-                    <p>Fun high-energy dance workout for all levels</p>
-                    <a class="service-link" href="#contact">Learn More →</a>
-                </article>
-                <article class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 3C12 3 8 5 8 9C8 13 12 16 12 16C12 16 16 13 16 9C16 5 12 3 12 3Z" fill="currentColor"/>
-                            <path d="M12 9C11.4477 9 11 9.44772 11 10C11 10.5523 11.4477 11 12 11C12.5523 11 13 10.5523 13 10C13 9.44772 12.5523 9 12 9Z" fill="currentColor"/>
-                            <path d="M4 18C4 16.8954 4.89543 16 6 16H18C19.1046 16 20 16.8954 20 18V22H4V18Z" fill="currentColor"/>
-                        </svg>
-                    </div>
-                    <h3>Bollywood Dance</h3>
-                    <p>Burn calories to your favourite Bollywood beats</p>
-                    <a class="service-link" href="#contact">Learn More →</a>
-                </article>
-                <article class="service-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="service-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="8" r="4" fill="currentColor"/>
-                            <path d="M12 14C7.58172 14 4 16.0294 4 18.5V22H20V18.5C20 16.0294 16.4183 14 12 14Z" fill="currentColor"/>
-                        </svg>
-                    </div>
-                    <h3>Personal Training</h3>
-                    <p>One-on-one sessions with certified trainers</p>
-                    <a class="service-link" href="#contact">Learn More →</a>
-                </article>
-                <article class="service-card" data-aos="fade-up" data-aos-delay="600">
-                    <div class="service-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="8" cy="7" r="3" fill="currentColor"/>
-                            <circle cx="16" cy="7" r="3" fill="currentColor"/>
-                            <path d="M8 11C5.79086 11 4 12.3431 4 14V22H12V14C12 12.3431 10.2091 11 8 11Z" fill="currentColor"/>
-                            <path d="M16 11C13.7909 11 12 12.3431 12 14V22H20V14C20 12.3431 18.2091 11 16 11Z" fill="currentColor"/>
-                        </svg>
-                    </div>
-                    <h3>Couple Training</h3>
-                    <p>Train together with special couple programs</p>
-                    <a class="service-link" href="#contact">Learn More →</a>
-                </article>
-            </div>
-        </div>
-    </section>
+    /* ── Progress Bar ── */
+    const progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (scrolled / maxScroll * 100) + '%';
+    }, { passive: true });
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="section section-pricing">
-        <div class="container">
-            <p class="section-label">— MEMBERSHIP PLANS</p>
-            <h2 class="section-title" data-aos="fade-up">Find Your Perfect Plan</h2>
-            <p class="pricing-subtext" data-aos="fade-up" data-aos-delay="100">No registration fee this month. Join today!</p>
-            <div class="pricing-grid">
-                <article class="pricing-card" data-aos="fade-up" data-aos-delay="150">
-                    <div class="pricing-top"></div>
-                    <span class="pricing-plan">STARTER</span>
-                    <p class="pricing-duration">1 Month</p>
-                    <p class="pricing-price">₹1,499</p>
-                    <ul class="pricing-features">
-                        <li>✓ Basic gym access</li>
-                        <li>✓ All equipment</li>
-                        <li>✓ Locker facility</li>
-                    </ul>
-                    <button class="btn btn-primary">Join Now</button>
-                </article>
-                <article class="pricing-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="pricing-top"></div>
-                    <span class="pricing-plan">PROGRESS</span>
-                    <p class="pricing-duration">3 Months</p>
-                    <p class="pricing-price">₹3,999</p>
-                    <ul class="pricing-features">
-                        <li>✓ Basic gym access</li>
-                        <li>✓ All equipment</li>
-                        <li>✓ Locker facility</li>
-                        <li>✓ Personal assessment</li>
-                    </ul>
-                    <button class="btn btn-primary">Join Now</button>
-                </article>
-                <article class="pricing-card pricing-card-featured" data-aos="fade-up" data-aos-delay="250">
-                    <div class="pricing-top"></div>
-                    <span class="pricing-badge pricing-badge-popular">MOST POPULAR</span>
-                    <span class="pricing-plan">TRANSFORM</span>
-                    <p class="pricing-duration">6 Months</p>
-                    <p class="pricing-price">₹5,999</p>
-                    <ul class="pricing-features">
-                        <li>✓ Basic gym access</li>
-                        <li>✓ All equipment</li>
-                        <li>✓ Locker facility</li>
-                        <li>✓ Personal assessment</li>
-                        <li>✓ Zumba &amp; Dance classes</li>
-                    </ul>
-                    <button class="btn btn-primary">Join Now</button>
-                </article>
-                <article class="pricing-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="pricing-top"></div>
-                    <span class="pricing-badge pricing-badge-free">1 MONTH FREE</span>
-                    <span class="pricing-plan">ELITE</span>
-                    <p class="pricing-duration">12 Months</p>
-                    <p class="pricing-price">₹7,999</p>
-                    <ul class="pricing-features">
-                        <li>✓ Basic gym access</li>
-                        <li>✓ All equipment</li>
-                        <li>✓ Locker facility</li>
-                        <li>✓ Personal assessment</li>
-                        <li>✓ Zumba &amp; Dance classes</li>
-                        <li>✓ Priority trainer access</li>
-                        <li>✓ Transformation challenge entry</li>
-                    </ul>
-                    <button class="btn btn-primary">Join Now</button>
-                </article>
-            </div>
-        </div>
-    </section>
+    /* ── Navbar scroll state ── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
 
-    <!-- Special Offers Section -->
-    <section id="offers" class="section section-offers">
-        <div class="container">
-            <p class="section-label">— LIMITED TIME</p>
-            <h2 class="section-title" data-aos="zoom-in">Special Offers</h2>
-            <div class="offers-grid">
-                <article class="offer-card offer-card-red" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="offer-icon">👥</div>
-                    <h3>BRING A FRIEND</h3>
-                    <p class="offer-highlight">GET ₹500 OFF</p>
-                    <p>Refer a friend and both of you save!</p>
-                </article>
-                <article class="offer-card offer-card-green" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="offer-icon">📋</div>
-                    <h3>NO REGISTRATION FEE</h3>
-                    <p class="offer-highlight">THIS MONTH ONLY</p>
-                    <p>Join now and skip the registration fee completely</p>
-                </article>
-                <article class="offer-card offer-card-purple" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="offer-icon">🏆</div>
-                    <h3>TRANSFORMATION CHALLENGE</h3>
-                    <p class="offer-highlight">WIN EXCITING REWARDS</p>
-                    <p>Join our challenge and win fitness gear & prizes</p>
-                </article>
-            </div>
-            <div class="offer-pills" data-aos="zoom-in" data-aos-delay="400">
-                <span class="offer-pill">💑 Couple Membership Special Offer — Ask Us!</span>
-                <span class="offer-pill">🕺 FREE Zumba + Bollywood Dance Classes Included</span>
-            </div>
-        </div>
-    </section>
+    /* ── Active nav link ── */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.navbar__link');
+    const observerNav = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.navbar__link[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => observerNav.observe(s));
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="section bg-dark">
-        <div class="container">
-            <p class="section-label">— OUR GYM</p>
-            <h2 class="section-title" data-aos="fade-up">Take A Look Inside</h2>
-            <div class="gallery-grid">
-                <button type="button" class="gallery-item" data-full="gallery1.jpg" data-caption="Premium strength deck" data-aos="zoom-in" data-aos-delay="50">
-                    <img src="gallery1.jpg" alt="Premium strength deck" loading="lazy" decoding="async">
-                    <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
-                </button>
-                <button type="button" class="gallery-item" data-full="gallery2.jpg" data-caption="Modern cardio zone" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="gallery2.jpg" alt="Modern cardio zone" loading="lazy" decoding="async">
-                    <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
-                </button>
-                <button type="button" class="gallery-item" data-full="gallery3.jpg" data-caption="Motivational wall murals" data-aos="zoom-in" data-aos-delay="150">
-                    <img src="gallery3.jpg" alt="Motivational wall murals" loading="lazy" decoding="async">
-                    <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
-                </button>
-                <button type="button" class="gallery-item" data-full="gallery4.jpg" data-caption="Community training space" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="gallery4.jpg" alt="Community training space" loading="lazy" decoding="async">
-                    <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
-                </button>
-                <button type="button" class="gallery-item" data-full="gallery5.jpg" data-caption="High-performance strength equipment" data-aos="zoom-in" data-aos-delay="250">
-                    <img src="gallery5.jpg" alt="High-performance strength equipment" loading="lazy" decoding="async">
-                    <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
-                </button>
-                <button type="button" class="gallery-item" data-full="gallery6.jpg" data-caption="Premium lifting corner" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="gallery6.jpg" alt="Premium lifting corner" loading="lazy" decoding="async">
-                    <div class="gallery-overlay"><span class="gallery-icon">🔍</span></div>
-                </button>
-            </div>
-        </div>
+    /* ── Mobile Nav ── */
+    const navToggle = document.getElementById('navToggle');
+    const navMobile = document.getElementById('navMobile');
+    function openMobileNav() {
+      navToggle.classList.add('open');
+      navMobile.classList.add('open');
+      navMobile.setAttribute('aria-hidden', 'false');
+      navToggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileNav() {
+      navToggle.classList.remove('open');
+      navMobile.classList.remove('open');
+      navMobile.setAttribute('aria-hidden', 'true');
+      navToggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    navToggle.addEventListener('click', () => {
+      navMobile.classList.contains('open') ? closeMobileNav() : openMobileNav();
+    });
+    document.querySelectorAll('[data-mobile-link]').forEach(l => {
+      l.addEventListener('click', closeMobileNav);
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNav(); });
 
-        <div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
-            <div role="dialog" aria-modal="true" class="lightbox-panel" tabindex="-1">
-                <button type="button" class="lightbox-close" aria-label="Close gallery">✕</button>
-                <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous image">‹</button>
-                <div class="lightbox-content">
-                    <img src="" alt="Expanded gallery image" id="lightboxImage" loading="lazy" decoding="async">
-                    <p class="lightbox-caption" id="lightboxCaption"></p>
-                </div>
-                <button type="button" class="lightbox-nav lightbox-next" aria-label="Next image">›</button>
-            </div>
-        </div>
-    </section>
+    /* ── Hero BG ken-burns ── */
+    const heroBg = document.getElementById('heroBg');
+    if (heroBg) {
+      const img = new Image();
+      img.onload = () => heroBg.classList.add('loaded');
+      img.src = 'images/hero.jpg';
+      heroBg.style.backgroundImage = "url('images/hero.jpg')";
+    }
 
-    <!-- BMI Calculator Section -->
-    <section id="bmi" class="section">
-        <div class="container">
-            <p class="section-label">— HEALTH TOOL</p>
-            <h2 class="section-title" data-aos="fade-up">Calculate Your BMI Now</h2>
-            <div class="bmi-card" data-aos="zoom-in" data-aos-delay="100">
-                <form id="bmiForm" class="bmi-form">
-                    <div class="bmi-grid">
-                        <div class="bmi-input">
-                            <label for="weight">Weight</label>
-                            <input type="number" id="weight" name="weight" placeholder="Weight (kg)" min="1" step="0.1" required>
-                        </div>
-                        <div class="bmi-input">
-                            <label for="height">Height</label>
-                            <input type="number" id="height" name="height" placeholder="Height (cm)" min="1" step="0.1" required>
-                        </div>
-                        <div class="bmi-input">
-                            <label for="age">Age</label>
-                            <input type="number" id="age" name="age" placeholder="Age" min="1" required>
-                        </div>
-                        <div class="bmi-input">
-                            <label for="gender">Gender</label>
-                            <select id="gender" name="gender" required>
-                                <option value="" disabled selected>Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                    </div>
+    /* ── Counter animation ── */
+    function animateCounter(el) {
+      const target = +el.dataset.target;
+      const duration = 1800;
+      const start = performance.now();
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(ease * target);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(step);
+    }
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCounter(e.target);
+          counterObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
 
-                    <button type="submit" class="btn btn-primary bmi-submit">CALCULATE MY BMI →</button>
-                    <p id="bmiError" class="bmi-error" aria-live="polite"></p>
-                </form>
+    /* ── Reveal on scroll ── */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-                <div id="bmiResult" class="bmi-result" aria-live="polite">
-                    <div class="bmi-result-inner">
-                        <div class="bmi-score" id="bmiScore">0.0</div>
-                        <div class="bmi-category" id="bmiCategory"></div>
-                        <div class="bmi-progress">
-                            <div class="bmi-progress-fill" id="bmiProgressFill"></div>
-                        </div>
-                        <div class="bmi-progress-scale">
-                            <span>0</span>
-                            <span>40+</span>
-                        </div>
-                        <p class="bmi-message" id="bmiMessage"></p>
-                        <a href="#contact" class="btn btn-secondary bmi-join-btn" id="bmiJoinBtn">Join Us Today</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    /* ── Gallery Lightbox ── */
+    const galleryItems = document.querySelectorAll('.gallery__item');
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbCaption = document.getElementById('lbCaption');
+    let currentGalleryIndex = 0;
 
-    <!-- Timings Section -->
-    <section id="timings" class="section">
-        <div class="container timings-layout" data-aos="fade-up" data-aos-delay="100">
-            <div class="timings-left">
-                <p class="section-label">— GYM HOURS</p>
-                <h2 class="section-title">We're Open</h2>
-                <div class="timing-cards">
-                    <article class="timing-card" data-days="1,2,3,4,5,6" data-start="360" data-end="1380">
-                        <div class="timing-card-header">
-                            <h3>Monday — Saturday</h3>
-                            <span class="status-badge" aria-live="polite"></span>
-                        </div>
-                        <p class="timing">6:00 AM – 11:00 PM</p>
-                    </article>
-                    <article class="timing-card" data-days="0" data-start="600" data-end="840">
-                        <div class="timing-card-header">
-                            <h3>Sunday</h3>
-                            <span class="status-badge" aria-live="polite"></span>
-                        </div>
-                        <p class="timing">10:00 AM – 2:00 PM</p>
-                    </article>
-                </div>
-            </div>
-            <div class="timings-right">
-                <div class="timing-cta-card">
-                    <h3>Ready To Start?</h3>
-                    <p>Call or WhatsApp us to enquire about membership and start your journey today.</p>
-                    <div class="timing-actions">
-                        <a href="tel:9821777160" class="btn btn-primary timing-btn">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline;vertical-align:middle;margin-right:0.5rem;margin-bottom:2px;">
-                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="currentColor"/>
-                            </svg>
-                            9821777160
-                        </a>
-                        <a href="https://wa.me/919821777160" target="_blank" rel="noreferrer" class="btn btn-whatsapp timing-btn">
-                            WhatsApp Us
-                        </a>
-                    </div>
-                    <p class="timing-social">Follow us on Instagram: <a href="https://instagram.com/body.lifefitnesshub" target="_blank" rel="noreferrer">@body.lifefitnesshub</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
+    function openLightbox(index) {
+      currentGalleryIndex = index;
+      const item = galleryItems[index];
+      lbImg.src = item.dataset.src;
+      lbImg.alt = item.dataset.caption || '';
+      lbCaption.textContent = item.dataset.caption || '';
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function prevImage() {
+      currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
+      openLightbox(currentGalleryIndex);
+    }
+    function nextImage() {
+      currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
+      openLightbox(currentGalleryIndex);
+    }
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Member Success Stories</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="50">
-                    <p class="testimonial-text">"BodyLife transformed my fitness journey. The trainers are incredibly knowledgeable and supportive!"</p>
-                    <p class="testimonial-author">- Raj Kumar</p>
-                </div>
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-                    <p class="testimonial-text">"Best gym in Andheri East. Clean facilities, modern equipment, and amazing classes!"</p>
-                    <p class="testimonial-author">- Priya Sharma</p>
-                </div>
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="150">
-                    <p class="testimonial-text">"Lost 15 kg in 6 months with their personalized training program. Highly recommend!"</p>
-                    <p class="testimonial-author">- Arjun Verma</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    galleryItems.forEach((item, i) => item.addEventListener('click', () => openLightbox(i)));
+    document.getElementById('lbClose').addEventListener('click', closeLightbox);
+    document.getElementById('lbPrev').addEventListener('click', prevImage);
+    document.getElementById('lbNext').addEventListener('click', nextImage);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'ArrowRight') nextImage();
+    });
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="container contact-layout" data-aos="fade-up" data-aos-delay="100">
-            <div class="contact-left">
-                <p class="section-label">— GET IN TOUCH</p>
-                <h2 class="section-title">Contact Us</h2>
-                <div class="contact-form-card" data-aos="fade-up" data-aos-delay="150">
-                    <form id="contactForm" class="contact-form" action="https://formsubmit.co/YOUR_EMAIL" method="POST" novalidate>
-                        <input type="hidden" name="_subject" value="New BodyLife enquiry">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="text" name="_honey" style="display:none;" autocomplete="off">
-                        <div class="form-row">
-                            <label>
-                                Full Name
-                                <input type="text" name="name" placeholder="Full Name" required>
-                            </label>
-                            <label>
-                                Phone Number
-                                <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9+\- ]{7,20}" required>
-                            </label>
-                        </div>
-                        <div class="form-row">
-                            <label>
-                                Email
-                                <input type="email" name="email" placeholder="Email" required>
-                            </label>
-                            <label>
-                                Membership Interest
-                                <select name="interest" required>
-                                    <option value="" disabled selected>Select Interest</option>
-                                    <option value="1 Month">1 Month</option>
-                                    <option value="3 Months">3 Months</option>
-                                    <option value="6 Months">6 Months</option>
-                                    <option value="12 Months">12 Months</option>
-                                    <option value="Just Enquiring">Just Enquiring</option>
-                                </select>
-                            </label>
-                        </div>
-                        <label>
-                            Message
-                            <textarea name="message" rows="4" placeholder="Write your message" required></textarea>
-                        </label>
-                        <button type="submit" class="btn btn-primary contact-submit">SEND ENQUIRY →</button>
-                        <p id="contactError" class="contact-feedback contact-error" aria-live="polite"></p>
-                        <p id="contactSuccess" class="contact-feedback contact-success" aria-live="polite">We'll contact you within 24 hours!</p>
-                    </form>
-                </div>
-            </div>
-            <div class="contact-right" data-aos="fade-up" data-aos-delay="200">
-                <div class="contact-info-panel">
-                    <div class="contact-info-card">
-                        <h3><svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C7.58 2 4 5.58 4 10c0 5.25 8 13 8 13s8-7.75 8-13c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" fill="#CC0000"/>
-                        </svg> Address</h3>
-                        <p>Sahar Road, Chakala, Andheri East, Mumbai 400099</p>
-                    </div>
-                    <div class="contact-info-card">
-                        <h3><svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="#CC0000"/>
-                        </svg> Phone</h3>
-                        <p><a href="tel:9821777160">9821777160</a></p>
-                    </div>
-                    <div class="contact-info-card">
-                        <h3><svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-1.555.836-2.859 2.012-3.744 3.369C2.954 10.487 2.5 12.159 2.5 13.905c0 1.192.195 2.354.563 3.457L2.71 22.3l3.541-1.153c1.052.577 2.212.89 3.442.89 1.745 0 3.417-.454 4.866-1.315 1.555-.836 2.859-2.012 3.744-3.369.885-1.357 1.338-2.896 1.338-4.651 0-1.746-.454-3.418-1.315-4.867-.836-1.555-2.012-2.859-3.369-3.744-1.357-.885-2.896-1.338-4.651-1.338z" fill="#CC0000"/>
-                        </svg> WhatsApp</h3>
-                        <p><a href="https://wa.me/919821777160" target="_blank" rel="noreferrer">919821777160</a></p>
-                    </div>
-                    <div class="contact-info-card">
-                        <h3><svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="#CC0000" stroke-width="2"/>
-                            <circle cx="12" cy="12" r="4" fill="none" stroke="#CC0000" stroke-width="2"/>
-                            <circle cx="16.5" cy="7.5" r="1.5" fill="#CC0000"/>
-                        </svg> Instagram</h3>
-                        <p><a href="https://instagram.com/body.lifefitnesshub" target="_blank" rel="noreferrer">@body.lifefitnesshub</a></p>
-                    </div>
-                    <div class="contact-info-card">
-                        <h3><svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="10" fill="none" stroke="#CC0000" stroke-width="2"/>
-                            <path d="M12 6V12L16 14" stroke="#CC0000" stroke-width="2" stroke-linecap="round"/>
-                        </svg> Opening Hours</h3>
-                        <p>Mon-Sat: 6AM–11PM<br>Sun: 10AM–2PM</p>
-                    </div>
-                </div>
-                <div class="contact-map-card">
-                    <iframe class="contact-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30265.62590451999!2d72.86267695575081!3d19.108664932565485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c83c4b079603%3A0xddaa8ef1e40fbf36!2sChakala%2C%20Andheri%20East%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
+    /* ── BMI Calculator ── */
+    const bmiForm = document.getElementById('bmiForm');
+    if (bmiForm) {
+      bmiForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const weight = parseFloat(document.getElementById('bmiWeight').value);
+        const height = parseFloat(document.getElementById('bmiHeight').value) / 100;
+        if (!weight || !height || height <= 0) return;
+        const bmi = weight / (height * height);
+        let cat, msg;
+        if (bmi < 18.5)      { cat = 'Underweight'; msg = 'You may benefit from a structured weight gain and nutrition plan. Our trainers can help you build lean muscle mass.'; }
+        else if (bmi < 25)   { cat = 'Normal Weight'; msg = 'You have a healthy BMI. Focus on maintaining your fitness and building strength with our personalized programs.'; }
+        else if (bmi < 30)   { cat = 'Overweight'; msg = 'A guided fitness program combining cardio and strength training can help you reach your ideal weight effectively.'; }
+        else                  { cat = 'Obese'; msg = 'Our certified trainers specialize in safe, sustainable weight loss programs tailored to your current fitness level.'; }
+        document.getElementById('bmiScore').textContent = bmi.toFixed(1);
+        document.getElementById('bmiCat').textContent = cat;
+        document.getElementById('bmiMsg').textContent = msg;
+        const pct = Math.min((bmi / 40) * 100, 100);
+        document.getElementById('bmiBar').style.width = pct + '%';
+        const result = document.getElementById('bmiResult');
+        result.classList.add('visible');
+        result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
 
-    <!-- Footer -->
-    <footer id="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-grid">
-                    <div class="footer-section footer-brand">
-                        <img src="logo.png" alt="BodyLife Fitness Hub logo" class="footer-logo" loading="lazy" decoding="async">
-                        <p class="footer-tagline">Better Body. Better Life.</p>
-                        <p class="footer-description">Mumbai's premier fitness hub since 2001. Transform your body, transform your life.</p>
-                        <div class="footer-social-icons">
-                            <a href="https://instagram.com/body.lifefitnesshub" target="_blank" rel="noreferrer" aria-label="Instagram">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="#CC0000" stroke-width="1.5"/>
-                                    <circle cx="12" cy="12" r="4" fill="none" stroke="#CC0000" stroke-width="1.5"/>
-                                    <circle cx="16.5" cy="7.5" r="1.5" fill="#CC0000"/>
-                                </svg>
-                            </a>
-                            <a href="https://wa.me/919821777160" target="_blank" rel="noreferrer" aria-label="WhatsApp">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-1.555.836-2.859 2.012-3.744 3.369C2.954 10.487 2.5 12.159 2.5 13.905c0 1.192.195 2.354.563 3.457L2.71 22.3l3.541-1.153c1.052.577 2.212.89 3.442.89 1.745 0 3.417-.454 4.866-1.315 1.555-.836 2.859-2.012 3.744-3.369.885-1.357 1.338-2.896 1.338-4.651 0-1.746-.454-3.418-1.315-4.867-.836-1.555-2.012-2.859-3.369-3.744-1.357-.885-2.896-1.338-4.651-1.338z" fill="#CC0000"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="footer-section footer-links">
-                        <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="#hero">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#services">Services</a></li>
-                            <li><a href="#pricing">Pricing</a></li>
-                            <li><a href="#gallery">Gallery</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section footer-services">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#services">Weight Training</a></li>
-                            <li><a href="#services">Cardio Zone</a></li>
-                            <li><a href="#services">Zumba Classes</a></li>
-                            <li><a href="#services">Bollywood Dance</a></li>
-                            <li><a href="#services">Personal Training</a></li>
-                            <li><a href="#services">Couple Training</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section footer-contact-info">
-                        <h3>Contact</h3>
-                        <p><svg class="footer-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C7.58 2 4 5.58 4 10c0 5.25 8 13 8 13s8-7.75 8-13c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" fill="#CC0000"/>
-                        </svg> Sahar Road, Chakala, Andheri East, Mumbai 400099</p>
-                        <p><svg class="footer-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="#CC0000"/>
-                        </svg> <a href="tel:9821777160">9821777160</a></p>
-                        <p><svg class="footer-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="10" fill="none" stroke="#CC0000" stroke-width="2"/>
-                            <path d="M12 6V12L16 14" stroke="#CC0000" stroke-width="2" stroke-linecap="round"/>
-                        </svg> Mon-Sat: 6AM–11PM</p>
-                        <p><svg class="footer-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="10" fill="none" stroke="#CC0000" stroke-width="2"/>
-                            <path d="M12 6V12L16 14" stroke="#CC0000" stroke-width="2" stroke-linecap="round"/>
-                        </svg> Sun: 10AM–2PM</p>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="footer-bottom-left">© 2025 BodyLife Fitness Hub. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+    /* ── Opening Hours Status ── */
+    function updateStatus() {
+      const now = new Date();
+      const day = now.getDay(); // 0=Sun
+      const mins = now.getHours() * 60 + now.getMinutes();
+      const weekdayEl = document.getElementById('statusWeekday');
+      const sundayEl  = document.getElementById('statusSunday');
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/919821777160" class="whatsapp-btn" aria-label="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-1.555.836-2.859 2.012-3.744 3.369C2.954 10.487 2.5 12.159 2.5 13.905c0 1.192.195 2.354.563 3.457L2.71 22.3l3.541-1.153c1.052.577 2.212.89 3.442.89 1.745 0 3.417-.454 4.866-1.315 1.555-.836 2.859-2.012 3.744-3.369.885-1.357 1.338-2.896 1.338-4.651 0-1.746-.454-3.418-1.315-4.867-.836-1.555-2.012-2.859-3.369-3.744-1.357-.885-2.896-1.338-4.651-1.338z"/>
-        </svg>
-    </a>
+      function setStatus(el, open) {
+        el.className = 'status-pill ' + (open ? 'status-pill--open' : 'status-pill--closed');
+        el.innerHTML = `<span class="status-pill__dot"></span>${open ? 'Open Now' : 'Closed'}`;
+      }
 
-    <!-- AOS JS CDN -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      // Weekday: Mon–Sat, 360–1380 mins (6AM–11PM)
+      const isWeekday = day >= 1 && day <= 6;
+      const wdOpen = isWeekday && mins >= 360 && mins < 1380;
+      setStatus(weekdayEl, wdOpen);
 
-    <!-- Custom JS -->
-    <script src="js/main.js"></script>
+      // Sunday: 600–840 mins (10AM–2PM)
+      const sunOpen = day === 0 && mins >= 600 && mins < 840;
+      setStatus(sundayEl, sunOpen);
+    }
+    updateStatus();
+
+    /* ── Contact Form ── */
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (e) {
+        const name  = contactForm.querySelector('[name="name"]').value.trim();
+        const phone = contactForm.querySelector('[name="phone"]').value.trim();
+        const email = contactForm.querySelector('[name="email"]').value.trim();
+        const errEl = document.getElementById('formError');
+        const sucEl = document.getElementById('formSuccess');
+        errEl.classList.remove('visible');
+        sucEl.classList.remove('visible');
+        if (!name || !phone || !email) {
+          e.preventDefault();
+          errEl.textContent = 'Please fill in all required fields.';
+          errEl.classList.add('visible');
+        }
+        // If valid, form submits naturally to formsubmit.co
+      });
+    }
+
+  })();
+  </script>
+
 </body>
 </html>

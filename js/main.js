@@ -1,642 +1,869 @@
-/* ========================================
-   BODYLIFE FITNESS HUB - MAIN JAVASCRIPT
-   ======================================== */
+/* ============================================================
+   BODYLIFE FITNESS HUB — PREMIUM JS v2.0
+   Smooth · Animated · Professional · Interactive
+   ============================================================ */
 
-document.addEventListener('DOMContentLoaded', function() {
-    'use strict';
+'use strict';
 
-    // ========================================
-    // SCROLL PROGRESS BAR
-    // ========================================
-    const progressBar = document.getElementById('progressBar');
+/* ══════════════════════════════════════════
+   1. DOM READY
+══════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  initAOS();
+  initNavbar();
+  initScrollProgress();
+  initActiveNavLinks();
+  initHeroParallax();
+  initCounterAnimations();
+  initMobileMenu();
+  initGalleryLightbox();
+  initBMICalculator();
+  initGymTimings();
+  initContactForm();
+  initScrollReveal();
+  initCursorGlow();
+  initTypingEffect();
+  initPricingHover();
+  initSmoothScroll();
+  initLazyImages();
+  initStatsObserver();
+});
 
-    function updateProgressBar() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progressBar.style.width = scrollPercent + '%';
+/* ══════════════════════════════════════════
+   2. AOS INIT
+══════════════════════════════════════════ */
+function initAOS() {
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 700,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 60,
+      delay: 0,
+    });
+  }
+}
+
+/* ══════════════════════════════════════════
+   3. NAVBAR — SCROLL BEHAVIOR
+══════════════════════════════════════════ */
+function initNavbar() {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+
+  let lastScroll = 0;
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const currentScroll = window.scrollY;
+
+        // Add/remove scrolled class
+        if (currentScroll > 60) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+
+        // Hide on scroll down, show on scroll up
+        if (currentScroll > 300) {
+          if (currentScroll > lastScroll && currentScroll > 100) {
+            navbar.style.transform = 'translateY(-100%)';
+          } else {
+            navbar.style.transform = 'translateY(0)';
+          }
+        } else {
+          navbar.style.transform = 'translateY(0)';
+        }
+
+        lastScroll = currentScroll;
+        ticking = false;
+      });
+      ticking = true;
     }
+  }, { passive: true });
+}
 
-    // ========================================
-    // NAVBAR FUNCTIONALITY
-    // ========================================
-    const navbar = document.getElementById('navbar');
-    const navbarToggle = document.getElementById('navbarToggle');
-    const navbarMobileMenu = document.getElementById('navbarMobileMenu');
-    const navbarBackdrop = document.getElementById('navbarBackdrop');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const navbarMobileLinks = document.querySelectorAll('.navbar-mobile-link');
-    const sections = document.querySelectorAll('section[id]');
-    let isMenuOpen = false;
+/* ══════════════════════════════════════════
+   4. SCROLL PROGRESS BAR
+══════════════════════════════════════════ */
+function initScrollProgress() {
+  const bar = document.getElementById('progressBar');
+  if (!bar) return;
 
-    // Toggle mobile menu
-    navbarToggle.addEventListener('click', function() {
-        isMenuOpen = !isMenuOpen;
-        navbarToggle.classList.toggle('active');
-        navbarMobileMenu.classList.toggle('active');
-        navbarBackdrop.classList.toggle('active');
-        navbarToggle.setAttribute('aria-expanded', isMenuOpen ? 'true' : 'false');
-        
-        // Prevent body scroll when menu is open
-        if (isMenuOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-    });
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = `${Math.min(pct, 100)}%`;
+  }, { passive: true });
+}
 
-    // Close menu when backdrop is clicked
-    navbarBackdrop.addEventListener('click', function() {
-        if (isMenuOpen) {
-            isMenuOpen = false;
-            navbarToggle.classList.remove('active');
-            navbarMobileMenu.classList.remove('active');
-            navbarBackdrop.classList.remove('active');
-            navbarToggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = 'auto';
-        }
-    });
+/* ══════════════════════════════════════════
+   5. ACTIVE NAV LINKS (INTERSECTION)
+══════════════════════════════════════════ */
+function initActiveNavLinks() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link, .navbar-mobile-link');
+  if (!sections.length || !navLinks.length) return;
 
-    // Close mobile menu when a link is clicked and update active state
-    [...navLinks, ...navbarMobileLinks].forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            // Remove active class from all links
-            navLinks.forEach(l => l.classList.remove('active'));
-            navbarMobileLinks.forEach(l => l.classList.remove('active'));
-            
-            // Add active class to clicked link
-            this.classList.add('active');
-            
-            // Close mobile menu if it's open
-            if (isMenuOpen && this.classList.contains('navbar-mobile-link')) {
-                isMenuOpen = false;
-                navbarToggle.classList.remove('active');
-                navbarMobileMenu.classList.remove('active');
-                navbarBackdrop.classList.remove('active');
-                navbarToggle.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = 'auto';
-            }
-        });
-    });
-
-    // Navbar scroll effect and active link highlighting
-    function updateNavbarOnScroll() {
-        // Add backdrop blur and dark background after 80px
-        if (window.scrollY > 80) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-
-        // Highlight active nav link based on scroll position
-        let currentSection = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            const sectionId = section.getAttribute('id');
-            
-            // Check if section is in viewport
-            if (window.scrollY >= sectionTop - 150 && window.scrollY < sectionTop + sectionHeight - 150) {
-                currentSection = sectionId;
-            }
-        });
-
-        // Update active state for all nav links
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
         navLinks.forEach(link => {
-            const section = link.getAttribute('data-section');
-            if (section === currentSection) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
+          link.classList.remove('active');
+          if (link.dataset.section === id) {
+            link.classList.add('active');
+          }
         });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
 
-        navbarMobileLinks.forEach(link => {
-            const section = link.getAttribute('data-section');
-            if (section === currentSection) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        });
+  sections.forEach(s => observer.observe(s));
+}
+
+/* ══════════════════════════════════════════
+   6. HERO PARALLAX
+══════════════════════════════════════════ */
+function initHeroParallax() {
+  const heroBg = document.querySelector('.hero-bg');
+  if (!heroBg) return;
+
+  // Respect reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY < window.innerHeight) {
+      heroBg.style.transform = `scale(1.06) translateY(${scrollY * 0.28}px)`;
+    }
+  }, { passive: true });
+}
+
+/* ══════════════════════════════════════════
+   7. COUNTER ANIMATIONS
+══════════════════════════════════════════ */
+function initCounterAnimations() {
+  const counters = document.querySelectorAll('.stat-number[data-target]');
+  if (!counters.length) return;
+
+  const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
+
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const duration = 2000;
+    const start = performance.now();
+    const suffix = el.dataset.suffix || '+';
+
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeOutQuart(progress);
+      const current = Math.round(eased * target);
+      el.textContent = current.toLocaleString() + (progress === 1 ? suffix : '');
+      if (progress < 1) requestAnimationFrame(update);
     }
 
-    // Initialize on page load
-    updateNavbarOnScroll();
-    updateProgressBar();
+    requestAnimationFrame(update);
+  }
 
-    // ========================================
-    // HERO PARALLAX EFFECT
-    // ========================================
-    const heroBg = document.querySelector('.hero-bg');
-    
-    if (heroBg) {
-        window.addEventListener('scroll', function() {
-            const scrollY = window.scrollY;
-            // Parallax effect: move background slower than scroll
-            heroBg.style.transform = `translateY(${scrollY * 0.5}px)`;
-        });
-    }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
 
-    // ========================================
-    // HERO COUNTER ANIMATION
-    // ======================================== 
-    function animateHeroCounters() {
-        const statNumbers = document.querySelectorAll('.stat-number');
-        let countersStarted = false;
+  counters.forEach(c => observer.observe(c));
+}
 
-        // Function to animate a single counter
-        function countUp(element, target) {
-            let current = 0;
-            const increment = target / 50; // 50 frames for animation
-            const interval = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(interval);
-                }
-                element.textContent = Math.floor(current);
-            }, 30);
-        }
+/* ══════════════════════════════════════════
+   8. MOBILE MENU
+══════════════════════════════════════════ */
+function initMobileMenu() {
+  const toggle   = document.getElementById('navbarToggle');
+  const menu     = document.getElementById('navbarMobileMenu');
+  const backdrop = document.getElementById('navbarBackdrop');
+  const links    = document.querySelectorAll('.navbar-mobile-link, .navbar-mobile-cta');
+  if (!toggle || !menu) return;
 
-        // Check if hero stats are in viewport and start animation
-        function checkAndStartCounters() {
-            if (!countersStarted && statNumbers.length > 0) {
-                const firstStat = statNumbers[0];
-                const rect = firstStat.getBoundingClientRect();
-                
-                // Start animation when stat is in viewport
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    countersStarted = true;
-                    statNumbers.forEach(element => {
-                        const target = parseInt(element.getAttribute('data-target'));
-                        if (target) {
-                            countUp(element, target);
-                        }
-                    });
-                }
-            }
-        }
+  let isOpen = false;
 
-        // Check immediately and on scroll
-        checkAndStartCounters();
-        window.addEventListener('scroll', checkAndStartCounters, { once: false });
-    }
+  function openMenu() {
+    isOpen = true;
+    menu.classList.add('open');
+    backdrop && backdrop.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
 
-    // Initialize hero counters
-    animateHeroCounters();
+    // Animate hamburger to X
+    const lines = toggle.querySelectorAll('.hamburger-line');
+    if (lines[0]) { lines[0].style.transform = 'rotate(45deg) translate(5px,5px)'; }
+    if (lines[1]) { lines[1].style.opacity = '0'; lines[1].style.transform = 'scaleX(0)'; }
+    if (lines[2]) { lines[2].style.transform = 'rotate(-45deg) translate(5px,-5px)'; }
+  }
 
-    // ========================================
-    // SMOOTH SCROLL FOR ANCHOR LINKS
-    // ========================================
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            // Skip if it's just "#"
-            if (href !== '#') {
-                e.preventDefault();
-                
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }
-        });
+  function closeMenu() {
+    isOpen = false;
+    menu.classList.remove('open');
+    backdrop && backdrop.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+
+    const lines = toggle.querySelectorAll('.hamburger-line');
+    lines.forEach(l => { l.style.transform = ''; l.style.opacity = ''; });
+  }
+
+  toggle.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
+  backdrop && backdrop.addEventListener('click', closeMenu);
+  links.forEach(link => link.addEventListener('click', closeMenu));
+
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && isOpen) closeMenu();
+  });
+}
+
+/* ══════════════════════════════════════════
+   9. SMOOTH SCROLL
+══════════════════════════════════════════ */
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      const id = anchor.getAttribute('href');
+      if (id === '#') return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+}
+
+/* ══════════════════════════════════════════
+   10. GALLERY LIGHTBOX
+══════════════════════════════════════════ */
+function initGalleryLightbox() {
+  const lightbox  = document.getElementById('galleryLightbox');
+  const lbImage   = document.getElementById('lightboxImage');
+  const lbCaption = document.getElementById('lightboxCaption');
+  const closeBtn  = lightbox?.querySelector('.lightbox-close');
+  const prevBtn   = lightbox?.querySelector('.lightbox-prev');
+  const nextBtn   = lightbox?.querySelector('.lightbox-next');
+  const items     = Array.from(document.querySelectorAll('.gallery-item'));
+  if (!lightbox || !items.length) return;
+
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    const item = items[index];
+    const imgSrc = item.dataset.full || item.querySelector('img')?.src;
+    const caption = item.dataset.caption || '';
+
+    lbImage.src = imgSrc;
+    lbImage.alt = caption;
+    lbCaption.textContent = caption;
+
+    lightbox.setAttribute('aria-hidden', 'false');
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    // Fade in
+    lightbox.style.opacity = '0';
+    requestAnimationFrame(() => {
+      lightbox.style.transition = 'opacity 0.35s ease';
+      lightbox.style.opacity = '1';
     });
 
-    // ========================================
-    // BMI CALCULATOR
-    // ========================================
-    const bmiForm = document.getElementById('bmiForm');
-    const weightInput = document.getElementById('weight');
-    const heightInput = document.getElementById('height');
-    const ageInput = document.getElementById('age');
-    const genderSelect = document.getElementById('gender');
-    const bmiError = document.getElementById('bmiError');
-    const bmiResult = document.getElementById('bmiResult');
-    const bmiScore = document.getElementById('bmiScore');
-    const bmiCategory = document.getElementById('bmiCategory');
-    const bmiMessage = document.getElementById('bmiMessage');
-    const bmiProgressFill = document.getElementById('bmiProgressFill');
-    const bmiJoinBtn = document.getElementById('bmiJoinBtn');
+    const panel = lightbox.querySelector('.lightbox-panel');
+    panel?.focus();
+  }
 
-    function animateBmiValue(target) {
-        const duration = 800;
-        const startValue = 0;
-        let startTime = null;
+  function closeLightbox() {
+    lightbox.style.opacity = '0';
+    setTimeout(() => {
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightbox.style.display = 'none';
+      lightbox.style.opacity = '';
+      document.body.style.overflow = '';
+      lbImage.src = '';
+    }, 300);
+  }
 
-        function step(timestamp) {
-            if (!startTime) startTime = timestamp;
-            const progress = Math.min((timestamp - startTime) / duration, 1);
-            const current = startValue + (target - startValue) * progress;
-            bmiScore.textContent = current.toFixed(1);
+  function showNext() {
+    currentIndex = (currentIndex + 1) % items.length;
+    openLightbox(currentIndex);
+  }
 
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            } else {
-                bmiScore.textContent = target.toFixed(1);
-            }
-        }
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    openLightbox(currentIndex);
+  }
 
-        window.requestAnimationFrame(step);
+  items.forEach((item, i) => {
+    item.addEventListener('click', () => openLightbox(i));
+  });
+
+  closeBtn?.addEventListener('click', closeLightbox);
+  nextBtn?.addEventListener('click', showNext);
+  prevBtn?.addEventListener('click', showPrev);
+
+  // Backdrop click
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (lightbox.getAttribute('aria-hidden') === 'true') return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft')  showPrev();
+  });
+
+  // Swipe support
+  let touchStartX = 0;
+  lightbox.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  lightbox.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) dx < 0 ? showNext() : showPrev();
+  }, { passive: true });
+}
+
+/* ══════════════════════════════════════════
+   11. BMI CALCULATOR
+══════════════════════════════════════════ */
+function initBMICalculator() {
+  const form        = document.getElementById('bmiForm');
+  const resultEl    = document.getElementById('bmiResult');
+  const scoreEl     = document.getElementById('bmiScore');
+  const categoryEl  = document.getElementById('bmiCategory');
+  const messageEl   = document.getElementById('bmiMessage');
+  const progressEl  = document.getElementById('bmiProgressFill');
+  const errorEl     = document.getElementById('bmiError');
+  const joinBtn     = document.getElementById('bmiJoinBtn');
+  if (!form) return;
+
+  const categories = [
+    { max: 18.5, label: 'Underweight',    color: '#60a5fa', msg: 'You need more nutrition & strength training. Our expert trainers can build a plan for you.',   pct: 15 },
+    { max: 25.0, label: 'Healthy Weight', color: '#22c55e', msg: 'Great work! Maintain your fitness with our classes. Keep pushing!',                             pct: 45 },
+    { max: 30.0, label: 'Overweight',     color: '#facc15', msg: 'Time to step it up. Our cardio & personal training programs are perfect for you.',              pct: 68 },
+    { max: 35.0, label: 'Obese Class I',  color: '#f97316', msg: 'Let\'s get started together. Join BodyLife and transform with expert guidance.',                 pct: 82 },
+    { max: Infinity, label: 'Obese Class II+', color: '#ef4444', msg: 'Your health is our priority. Start your journey today — our trainers are here for you.', pct: 95 },
+  ];
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (errorEl) errorEl.textContent = '';
+
+    const weight = parseFloat(document.getElementById('weight')?.value);
+    const height = parseFloat(document.getElementById('height')?.value);
+    const age    = parseInt(document.getElementById('age')?.value, 10);
+
+    if (!weight || !height || !age || weight <= 0 || height <= 0 || age <= 0) {
+      if (errorEl) errorEl.textContent = 'Please enter valid weight, height and age.';
+      return;
+    }
+    if (height > 300 || weight > 500) {
+      if (errorEl) errorEl.textContent = 'Please enter realistic values.';
+      return;
     }
 
-    function setBmiResult(bmi, category, color, message) {
-        bmiCategory.textContent = category;
-        bmiCategory.style.color = color;
-        bmiMessage.textContent = message;
-        bmiProgressFill.style.width = `${Math.min((bmi / 40) * 100, 100)}%`;
-        bmiProgressFill.style.backgroundColor = color;
-        bmiResult.classList.add('show');
-        bmiJoinBtn.classList.add('visible');
-        animateBmiValue(bmi);
+    const bmi = weight / Math.pow(height / 100, 2);
+    const cat = categories.find(c => bmi < c.max);
+
+    // Show result
+    resultEl.classList.add('visible');
+    resultEl.style.display = 'block';
+
+    // Animate BMI score
+    animateValue(scoreEl, 0, bmi, 1400, val => val.toFixed(1));
+
+    // Category & message
+    categoryEl.textContent = cat.label;
+    categoryEl.style.color = cat.color;
+    if (messageEl) messageEl.textContent = cat.msg;
+
+    // Progress bar
+    if (progressEl) {
+      progressEl.style.width = '0%';
+      setTimeout(() => {
+        progressEl.style.transition = 'width 1.2s cubic-bezier(0.25,0.46,0.45,0.94)';
+        progressEl.style.width = `${cat.pct}%`;
+      }, 100);
     }
 
-    function showBmiError(message) {
-        bmiError.textContent = message;
-        bmiResult.classList.remove('show');
-        bmiJoinBtn.classList.remove('visible');
+    // Scroll to result
+    setTimeout(() => {
+      resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 200);
+  });
+
+  function animateValue(el, start, end, duration, formatter) {
+    const startTime = performance.now();
+    function update(now) {
+      const p = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = formatter(start + (end - start) * eased);
+      if (p < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+}
+
+/* ══════════════════════════════════════════
+   12. GYM TIMINGS — LIVE STATUS
+══════════════════════════════════════════ */
+function initGymTimings() {
+  const timingCards = document.querySelectorAll('.timing-card');
+  if (!timingCards.length) return;
+
+  function updateStatus() {
+    const now    = new Date();
+    const day    = now.getDay(); // 0=Sun
+    const mins   = now.getHours() * 60 + now.getMinutes();
+
+    timingCards.forEach(card => {
+      const badge    = card.querySelector('.status-badge');
+      if (!badge) return;
+
+      const days     = card.dataset.days?.split(',').map(Number) || [];
+      const startMin = parseInt(card.dataset.start, 10);
+      const endMin   = parseInt(card.dataset.end, 10);
+      const isToday  = days.includes(day);
+      const isOpen   = isToday && mins >= startMin && mins < endMin;
+
+      badge.textContent = isOpen ? '● Open Now' : '● Closed';
+      badge.className   = `status-badge ${isOpen ? 'open' : 'closed'}`;
+    });
+  }
+
+  updateStatus();
+  setInterval(updateStatus, 60 * 1000);
+}
+
+/* ══════════════════════════════════════════
+   13. CONTACT FORM
+══════════════════════════════════════════ */
+function initContactForm() {
+  const form       = document.getElementById('contactForm');
+  const errorEl    = document.getElementById('contactError');
+  const successEl  = document.getElementById('contactSuccess');
+  const submitBtn  = form?.querySelector('.contact-submit');
+  if (!form) return;
+
+  // Real-time validation
+  form.querySelectorAll('input, select, textarea').forEach(field => {
+    field.addEventListener('blur', () => validateField(field));
+    field.addEventListener('input', () => {
+      if (field.style.borderColor === 'rgb(239, 68, 68)') validateField(field);
+    });
+  });
+
+  function validateField(field) {
+    const val = field.value.trim();
+    let valid = true;
+
+    if (field.required && !val) valid = false;
+    if (field.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) valid = false;
+    if (field.type === 'tel' && val && !/^[0-9+\-\s]{7,20}$/.test(val)) valid = false;
+
+    field.style.borderColor = valid ? '' : '#ef4444';
+    field.style.boxShadow   = valid ? '' : '0 0 0 3px rgba(239,68,68,0.15)';
+    return valid;
+  }
+
+  function validateAll() {
+    let allValid = true;
+    form.querySelectorAll('[required]').forEach(field => {
+      if (!validateField(field)) allValid = false;
+    });
+    return allValid;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (errorEl) errorEl.textContent = '';
+    if (successEl) successEl.classList.remove('show');
+
+    if (!validateAll()) {
+      if (errorEl) errorEl.textContent = 'Please fill in all required fields correctly.';
+      return;
     }
 
-    function calculateBMI() {
-        const weight = parseFloat(weightInput.value);
-        const height = parseFloat(heightInput.value);
-        const age = parseInt(ageInput.value, 10);
-        const gender = genderSelect.value;
+    // Button loading state
+    const originalText = submitBtn?.innerHTML;
+    if (submitBtn) {
+      submitBtn.innerHTML = '<span class="btn-spinner"></span> Sending...';
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+    }
 
-        bmiError.textContent = '';
+    try {
+      const action = form.getAttribute('action');
 
-        if (!weight || weight <= 0) {
-            showBmiError('Please enter a valid weight in kilograms.');
-            weightInput.focus();
-            return;
-        }
-
-        if (!height || height <= 0) {
-            showBmiError('Please enter a valid height in centimeters.');
-            heightInput.focus();
-            return;
-        }
-
-        if (!age || age <= 0) {
-            showBmiError('Please enter a valid age.');
-            ageInput.focus();
-            return;
-        }
-
-        if (!gender) {
-            showBmiError('Please select your gender.');
-            genderSelect.focus();
-            return;
-        }
-
-        const heightInMeters = height / 100;
-        const bmi = parseFloat((weight / (heightInMeters * heightInMeters)).toFixed(1));
-
-        let category = '';
-        let color = '';
-        let message = '';
-
-        if (bmi < 18.5) {
-            category = 'Underweight';
-            color = '#3b82f6';
-            message = 'Visit us at BodyLife to start your transformation!';
-        } else if (bmi < 25) {
-            category = 'Normal Weight';
-            color = '#10b981';
-            message = 'Great shape! Keep it up with our training.';
-        } else if (bmi < 30) {
-            category = 'Overweight';
-            color = '#f59e0b';
-            message = 'Visit us at BodyLife to start your transformation!';
+      // If the action is still the placeholder, just show success (demo mode)
+      if (!action || action.includes('YOUR_EMAIL')) {
+        await new Promise(r => setTimeout(r, 1400));
+        showSuccess();
+      } else {
+        const data = new FormData(form);
+        const res  = await fetch(action, { method: 'POST', body: data });
+        if (res.ok) {
+          showSuccess();
         } else {
-            category = 'Obese';
-            color = '#ef4444';
-            message = 'Visit us at BodyLife to start your transformation!';
+          throw new Error('Server error');
         }
-
-        setBmiResult(bmi, category, color, message);
+      }
+    } catch {
+      if (errorEl) errorEl.textContent = 'Something went wrong. Please call us directly.';
+    } finally {
+      if (submitBtn) {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '';
+      }
     }
+  });
 
-    bmiForm?.addEventListener('submit', function(event) {
-        event.preventDefault();
-        calculateBMI();
+  function showSuccess() {
+    if (successEl) successEl.classList.add('show');
+    form.reset();
+    form.querySelectorAll('input, select, textarea').forEach(f => {
+      f.style.borderColor = '';
+      f.style.boxShadow = '';
+    });
+    setTimeout(() => successEl?.classList.remove('show'), 6000);
+  }
+}
+
+/* ══════════════════════════════════════════
+   14. SCROLL REVEAL (CUSTOM)
+══════════════════════════════════════════ */
+function initScrollReveal() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const revealEls = document.querySelectorAll(
+    '.feature-card, .service-card, .pricing-card, .offer-card, .testimonial-card, .gallery-item, .timing-card'
+  );
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)';
+    observer.observe(el);
+  });
+}
+
+/* ══════════════════════════════════════════
+   15. CURSOR GLOW (DESKTOP ONLY)
+══════════════════════════════════════════ */
+function initCursorGlow() {
+  if (window.innerWidth < 1024) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const glow = document.createElement('div');
+  glow.id = 'cursorGlow';
+  Object.assign(glow.style, {
+    position:        'fixed',
+    pointerEvents:   'none',
+    zIndex:          '9998',
+    width:           '400px',
+    height:          '400px',
+    borderRadius:    '50%',
+    background:      'radial-gradient(circle, rgba(204,0,0,0.07) 0%, transparent 70%)',
+    transform:       'translate(-50%, -50%)',
+    transition:      'opacity 0.3s ease',
+    opacity:         '0',
+    top:             '0',
+    left:            '0',
+    willChange:      'transform',
+  });
+  document.body.appendChild(glow);
+
+  let mouseX = 0, mouseY = 0;
+  let glowX  = 0, glowY  = 0;
+  let animating = false;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    glow.style.opacity = '1';
+    if (!animating) {
+      animating = true;
+      requestAnimationFrame(animateGlow);
+    }
+  }, { passive: true });
+
+  document.addEventListener('mouseleave', () => {
+    glow.style.opacity = '0';
+  });
+
+  function animateGlow() {
+    glowX += (mouseX - glowX) * 0.1;
+    glowY += (mouseY - glowY) * 0.1;
+    glow.style.left = glowX + 'px';
+    glow.style.top  = glowY + 'px';
+    if (Math.abs(mouseX - glowX) > 0.5 || Math.abs(mouseY - glowY) > 0.5) {
+      requestAnimationFrame(animateGlow);
+    } else {
+      animating = false;
+    }
+  }
+
+  // Grow on interactive elements
+  const interactives = document.querySelectorAll('button, a, .service-card, .pricing-card, .feature-card, .gallery-item');
+  interactives.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      glow.style.width  = '600px';
+      glow.style.height = '600px';
+      glow.style.background = 'radial-gradient(circle, rgba(204,0,0,0.11) 0%, transparent 70%)';
+    });
+    el.addEventListener('mouseleave', () => {
+      glow.style.width  = '400px';
+      glow.style.height = '400px';
+      glow.style.background = 'radial-gradient(circle, rgba(204,0,0,0.07) 0%, transparent 70%)';
+    });
+  });
+}
+
+/* ══════════════════════════════════════════
+   16. TYPING EFFECT — HERO SUBTITLE
+══════════════════════════════════════════ */
+function initTypingEffect() {
+  const el = document.querySelector('.hero-subheading');
+  if (!el) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const phrases = [
+    'Start Your Transformation Today',
+    'Expert Trainers. Real Results.',
+    'Mumbai\'s Premier Fitness Hub',
+    'Since 2001 · Andheri East',
+  ];
+
+  let phraseIndex = 0;
+  let charIndex   = 0;
+  let deleting    = false;
+  let paused      = false;
+
+  function type() {
+    if (paused) return;
+
+    const current = phrases[phraseIndex];
+
+    if (!deleting) {
+      el.textContent = current.slice(0, ++charIndex);
+      if (charIndex === current.length) {
+        paused = true;
+        setTimeout(() => { paused = false; deleting = true; tick(); }, 2400);
+        return;
+      }
+    } else {
+      el.textContent = current.slice(0, --charIndex);
+      if (charIndex === 0) {
+        deleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+      }
+    }
+    tick();
+  }
+
+  function tick() {
+    const speed = deleting ? 38 : 72;
+    setTimeout(type, speed);
+  }
+
+  // Small delay before starting
+  setTimeout(tick, 1200);
+}
+
+/* ══════════════════════════════════════════
+   17. PRICING CARD HOVER TILT
+══════════════════════════════════════════ */
+function initPricingHover() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.innerWidth < 768) return;
+
+  const cards = document.querySelectorAll('.pricing-card, .service-card, .offer-card');
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect   = card.getBoundingClientRect();
+      const x      = e.clientX - rect.left;
+      const y      = e.clientY - rect.top;
+      const cx     = rect.width / 2;
+      const cy     = rect.height / 2;
+      const tiltX  = ((y - cy) / cy) * 5;
+      const tiltY  = ((cx - x) / cx) * 5;
+
+      card.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-6px)`;
     });
 
-    weightInput?.addEventListener('input', function() {
-        if (bmiError.textContent) bmiError.textContent = '';
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.transition = 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)';
     });
 
-    heightInput?.addEventListener('input', function() {
-        if (bmiError.textContent) bmiError.textContent = '';
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'transform 0.15s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease';
     });
+  });
 
-    ageInput?.addEventListener('input', function() {
-        if (bmiError.textContent) bmiError.textContent = '';
+  // Featured card doesn't tilt
+  const featured = document.querySelector('.pricing-card-featured');
+  if (featured) {
+    featured.addEventListener('mousemove', e => e.stopPropagation());
+    featured.style.transform = '';
+  }
+}
+
+/* ══════════════════════════════════════════
+   18. LAZY IMAGE LOADING
+══════════════════════════════════════════ */
+function initLazyImages() {
+  const imgs = document.querySelectorAll('img[loading="lazy"]');
+  if (!imgs.length || !('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.style.transition = 'opacity 0.5s ease';
+        img.style.opacity = '0';
+        img.addEventListener('load', () => {
+          img.style.opacity = '1';
+        }, { once: true });
+        observer.unobserve(img);
+      }
     });
+  }, { rootMargin: '200px' });
 
-    genderSelect?.addEventListener('change', function() {
-        if (bmiError.textContent) bmiError.textContent = '';
-    });
+  imgs.forEach(img => observer.observe(img));
+}
 
-    // ========================================
-    // GYM TIMINGS STATUS
-    // ========================================
-    function updateGymTimings() {
-        const timingCards = document.querySelectorAll('#timings .timing-card');
-        const now = new Date();
-        const today = now.getDay();
-        const currentMinutes = now.getHours() * 60 + now.getMinutes();
+/* ══════════════════════════════════════════
+   19. STATS SECTION OBSERVER
+══════════════════════════════════════════ */
+function initStatsObserver() {
+  const statsSection = document.querySelector('.hero-stats');
+  if (!statsSection) return;
 
-        timingCards.forEach(card => {
-            const days = card.getAttribute('data-days').split(',').map(Number);
-            const start = parseInt(card.getAttribute('data-start'), 10);
-            const end = parseInt(card.getAttribute('data-end'), 10);
-            const badge = card.querySelector('.status-badge');
-            const isToday = days.includes(today);
-            const isOpen = isToday && currentMinutes >= start && currentMinutes < end;
-
-            card.classList.toggle('active-day', isToday);
-
-            if (isOpen) {
-                badge.textContent = 'Open Now';
-                badge.classList.add('open');
-                badge.classList.remove('closed');
-            } else {
-                badge.textContent = 'Closed';
-                badge.classList.add('closed');
-                badge.classList.remove('open');
-            }
+  // Already handled by counter animations, this just adds the glow
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.stat-number').forEach((el, i) => {
+          setTimeout(() => {
+            el.style.textShadow = '0 0 30px rgba(204,0,0,0.4)';
+          }, i * 200);
         });
-    }
-
-    updateGymTimings();
-    setInterval(updateGymTimings, 60000);
-
-    // ========================================
-    // GALLERY LIGHTBOX
-    // ========================================
-    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
-    const lightbox = document.getElementById('galleryLightbox');
-    const lightboxImage = document.getElementById('lightboxImage');
-    const lightboxCaption = document.getElementById('lightboxCaption');
-    const lightboxClose = document.querySelector('.lightbox-close');
-    const lightboxPrev = document.querySelector('.lightbox-prev');
-    const lightboxNext = document.querySelector('.lightbox-next');
-    let activeGalleryIndex = 0;
-
-    function updateLightbox(index) {
-        const item = galleryItems[index];
-        if (!item) return;
-
-        const src = item.getAttribute('data-full') || item.querySelector('img').src;
-        const caption = item.getAttribute('data-caption') || item.querySelector('img').alt || '';
-
-        lightboxImage.src = src;
-        lightboxImage.alt = caption;
-        lightboxCaption.textContent = caption;
-        activeGalleryIndex = index;
-    }
-
-    function openLightbox(index) {
-        updateLightbox(index);
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        lightbox.setAttribute('aria-hidden', 'false');
-    }
-
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        lightbox.setAttribute('aria-hidden', 'true');
-    }
-
-    function showNextImage() {
-        const nextIndex = (activeGalleryIndex + 1) % galleryItems.length;
-        updateLightbox(nextIndex);
-    }
-
-    function showPrevImage() {
-        const prevIndex = (activeGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
-        updateLightbox(prevIndex);
-    }
-
-    galleryItems.forEach((item, index) => {
-        item.addEventListener('click', function() {
-            openLightbox(index);
-        });
+        observer.unobserve(entry.target);
+      }
     });
+  }, { threshold: 0.5 });
 
-    lightboxClose?.addEventListener('click', closeLightbox);
-    lightboxNext?.addEventListener('click', showNextImage);
-    lightboxPrev?.addEventListener('click', showPrevImage);
+  observer.observe(statsSection);
+}
 
-    lightbox?.addEventListener('click', function(event) {
-        if (event.target === lightbox) {
-            closeLightbox();
-        }
-    });
-
-    document.addEventListener('keydown', function(event) {
-        if (!lightbox.classList.contains('active')) return;
-
-        if (event.key === 'Escape') {
-            closeLightbox();
-        }
-
-        if (event.key === 'ArrowRight') {
-            showNextImage();
-        }
-
-        if (event.key === 'ArrowLeft') {
-            showPrevImage();
-        }
-    });
-
-    // ========================================
-    // CONTACT FORM SUBMISSION
-    // ========================================
-    const contactForm = document.getElementById('contactForm');
-    const contactError = document.getElementById('contactError');
-    const contactSuccess = document.getElementById('contactSuccess');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            const name = this.querySelector('input[name="name"]').value.trim();
-            const phone = this.querySelector('input[name="phone"]').value.trim();
-            const email = this.querySelector('input[name="email"]').value.trim();
-            const interest = this.querySelector('select[name="interest"]').value;
-            const message = this.querySelector('textarea[name="message"]').value.trim();
-            const honey = this.querySelector('input[name="_honey"]').value;
-
-            contactError.textContent = '';
-            contactSuccess.classList.remove('visible');
-
-            if (honey) {
-                return;
-            }
-
-            if (!name || !phone || !email || !interest || !message) {
-                contactError.textContent = 'Please fill in all fields before sending your enquiry.';
-                e.preventDefault();
-                return;
-            }
-
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(email)) {
-                contactError.textContent = 'Please enter a valid email address.';
-                e.preventDefault();
-                return;
-            }
-
-            const phonePattern = /^[0-9+\- ]{7,20}$/;
-            if (!phonePattern.test(phone)) {
-                contactError.textContent = 'Please enter a valid phone number.';
-                e.preventDefault();
-                return;
-            }
-
-            contactSuccess.classList.add('visible');
-        });
+/* ══════════════════════════════════════════
+   20. INJECT BTN SPINNER STYLE
+══════════════════════════════════════════ */
+(function injectSpinnerCSS() {
+  const style = document.createElement('style');
+  style.textContent = `
+    .btn-spinner {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
     }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    // ========================================
-    // BUTTON CLICK EFFECTS
-    // ========================================
-    const buttons = document.querySelectorAll('.btn, button');
-    
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            // Create ripple effect
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
+    .navbar { transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), background 0.3s ease, box-shadow 0.3s ease; }
 
-            ripple.style.position = 'absolute';
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = x + 'px';
-            ripple.style.top = y + 'px';
-            ripple.style.borderRadius = '50%';
-            ripple.style.background = 'rgba(255, 255, 255, 0.5)';
-            ripple.style.pointerEvents = 'none';
-            ripple.style.animation = 'ripple-animation 0.6s ease-out';
+    .contact-success.show { display: block !important; }
+  `;
+  document.head.appendChild(style);
+})();
 
-            this.style.position = 'relative';
-            this.style.overflow = 'hidden';
-            this.appendChild(ripple);
+/* ══════════════════════════════════════════
+   21. JOIN NOW BUTTONS → PRICING SCROLL
+══════════════════════════════════════════ */
+(function initJoinButtons() {
+  document.addEventListener('DOMContentLoaded', () => {}, { once: true });
 
-            // Remove ripple after animation
-            setTimeout(() => ripple.remove(), 600);
-        });
+  document.querySelectorAll('.pricing-card .btn-primary').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
     });
+  });
+})();
 
-    // Add ripple animation keyframes
-    if (!document.querySelector('style[data-ripple]')) {
-        const style = document.createElement('style');
-        style.setAttribute('data-ripple', 'true');
-        style.textContent = `
-            @keyframes ripple-animation {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
+/* ══════════════════════════════════════════
+   22. GALLERY IMAGE PRELOAD ON HOVER
+══════════════════════════════════════════ */
+(function initGalleryPreload() {
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      const src = item.dataset.full;
+      if (src) {
+        const img = new Image();
+        img.src = src;
+      }
+    }, { once: true });
+  });
+})();
 
-    // ========================================
-    // SCROLL TO TOP BUTTON (Optional)
-    // ========================================
-    const scrollToTopBtn = document.createElement('button');
-    scrollToTopBtn.id = 'scrollToTopBtn';
-    scrollToTopBtn.innerHTML = '↑';
-    scrollToTopBtn.style.cssText = `
-        position: fixed;
-        bottom: 100px;
-        right: 2rem;
-        width: 50px;
-        height: 50px;
-        background-color: rgba(204, 0, 0, 0.8);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        font-size: 1.5rem;
-        cursor: pointer;
-        display: none;
-        z-index: 998;
-        transition: all 0.3s ease;
-        align-items: center;
-        justify-content: center;
-    `;
+/* ══════════════════════════════════════════
+   23. WINDOW RESIZE HANDLER
+══════════════════════════════════════════ */
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    // Re-init AOS on resize
+    if (typeof AOS !== 'undefined') AOS.refresh();
+  }, 250);
+}, { passive: true });
 
-    document.body.appendChild(scrollToTopBtn);
+/* ══════════════════════════════════════════
+   24. PAGE LOAD REVEAL
+══════════════════════════════════════════ */
+window.addEventListener('load', () => {
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'opacity 0.5s ease';
+  requestAnimationFrame(() => {
+    document.body.style.opacity = '1';
+  });
 
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            scrollToTopBtn.style.display = 'flex';
-        } else {
-            scrollToTopBtn.style.display = 'none';
-        }
-    });
-
-    scrollToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
-    scrollToTopBtn.addEventListener('mouseenter', function() {
-        this.style.backgroundColor = 'rgba(204, 0, 0, 1)';
-        this.style.transform = 'scale(1.1)';
-    });
-
-    scrollToTopBtn.addEventListener('mouseleave', function() {
-        this.style.backgroundColor = 'rgba(204, 0, 0, 0.8)';
-        this.style.transform = 'scale(1)';
-    });
-
-    // ========================================
-    // PERFORMANCE: REQUEST ANIMATION FRAME
-    // ========================================
-    let ticking = false;
-    
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            window.requestAnimationFrame(function() {
-                updateNavbarOnScroll();
-                updateProgressBar();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-
-    // ========================================
-    // INITIALIZE AOS (Animate On Scroll)
-    // ========================================
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-    }
-
-    // ========================================
-    // CONSOLE MESSAGE
-    // ========================================
-    console.log('%c🏋️ Welcome to BodyLife Fitness Hub! 🏋️', 'color: #CC0000; font-size: 16px; font-weight: bold;');
-    console.log('%cTransform your fitness journey with us!', 'color: #999999; font-size: 14px;');
-
+  // Trigger AOS after full load
+  setTimeout(() => {
+    if (typeof AOS !== 'undefined') AOS.refreshHard();
+  }, 300);
 });

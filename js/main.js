@@ -661,11 +661,7 @@ function initTypingEffect() {
     'Start Your Transformation Today',
     'Expert Trainers. Real Results.',
     'Mumbai\'s Premier Fitness Hub',
-    'Since 2001 · Andheri East',
-  ];
-
-  let phraseIndex = 0;
-  let charIndex   = 0;
+    'Since 1979 · Andheri East',
   let deleting    = false;
   let paused      = false;
 

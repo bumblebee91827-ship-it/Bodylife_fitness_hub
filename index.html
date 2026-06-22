@@ -1416,6 +1416,10 @@
       .contact__grid { grid-template-columns: 1fr; gap: 3rem; }
       .hours__cta { flex-direction: column; align-items: flex-start; }
     }
+    @media (max-width: 768px) {
+      .navbar { z-index: 1100; }
+      .hero { padding-top: 100px; }
+    }
     @media (max-width: 680px) {
       .section { padding: 5rem 0; }
       .features__grid { grid-template-columns: 1fr; }
@@ -1435,7 +1439,6 @@
     }
   </style>
 </head>
-<body>
 
   <!-- Progress Bar -->
   <div id="progress-bar"></div>
@@ -1503,7 +1506,7 @@
           <p class="hero__stat-label">Active Members</p>
         </div>
         <div class="hero__stat">
-          <span class="hero__stat-num"><span class="counter" data-target="20">0</span><span>+</span></span>
+          <span class="hero__stat-num"><span class="counter" data-target="47">0</span><span>+</span></span>
           <p class="hero__stat-label">Years Experience</p>
         </div>
         <div class="hero__stat">

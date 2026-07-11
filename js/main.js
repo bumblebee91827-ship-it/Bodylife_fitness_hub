@@ -593,7 +593,7 @@ function initCursorGlow() {
     width:           '400px',
     height:          '400px',
     borderRadius:    '50%',
-    background:      'radial-gradient(circle, rgba(204,0,0,0.07) 0%, transparent 70%)',
+    background:      'radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 70%)',
     transform:       'translate(-50%, -50%)',
     transition:      'opacity 0.3s ease',
     opacity:         '0',
@@ -639,12 +639,12 @@ function initCursorGlow() {
     el.addEventListener('mouseenter', () => {
       glow.style.width  = '600px';
       glow.style.height = '600px';
-      glow.style.background = 'radial-gradient(circle, rgba(204,0,0,0.11) 0%, transparent 70%)';
+      glow.style.background = 'radial-gradient(circle, rgba(212,175,55,0.11) 0%, transparent 70%)';
     });
     el.addEventListener('mouseleave', () => {
       glow.style.width  = '400px';
       glow.style.height = '400px';
-      glow.style.background = 'radial-gradient(circle, rgba(204,0,0,0.07) 0%, transparent 70%)';
+      glow.style.background = 'radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 70%)';
     });
   });
 }
@@ -773,7 +773,7 @@ function initStatsObserver() {
       if (entry.isIntersecting) {
         entry.target.querySelectorAll('.stat-number').forEach((el, i) => {
           setTimeout(() => {
-            el.style.textShadow = '0 0 30px rgba(204,0,0,0.4)';
+            el.style.textShadow = '0 0 30px rgba(212,175,55,0.4)';
           }, i * 200);
         });
         observer.unobserve(entry.target);
@@ -794,7 +794,7 @@ function initStatsObserver() {
       display: inline-block;
       width: 16px; height: 16px;
       border: 2px solid rgba(255,255,255,0.3);
-      border-top-color: #fff;
+      border-top-color: #FAFAFA;
       border-radius: 50%;
       animation: spin 0.7s linear infinite;
       vertical-align: middle;

@@ -2164,10 +2164,10 @@
       <div class="contact__grid" style="margin-top:3rem;">
 
         <div class="contact__form-wrap reveal">
-          <form id="contactForm" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST" novalidate>
-            <input type="hidden" name="_subject" value="New BodyLife Enquiry">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="text" name="_honey" style="display:none;" autocomplete="off">
+          <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+            <input type="hidden" name="access_key" value="9938e853-3dd7-4ccb-9412-92918bfacbc1">
+            <input type="hidden" name="subject" value="New BodyLife Enquiry">
+            <input type="text" name="botcheck" style="display:none;" autocomplete="off">
             <div class="form-row">
               <div class="form-field">
                 <label>Full Name</label>
@@ -2556,7 +2556,7 @@
           errEl.textContent = 'Please fill in all required fields.';
           errEl.classList.add('visible');
         }
-        // If valid, form submits naturally to formsubmit.co
+        // If valid, form submits naturally to Web3Forms
       });
     }
 
